@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" src="../script/register.js"></script>
+    <link rel="stylesheet" href="../styles/register.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <!-- <a href="/overview">Home</a> -->
+      <a href="./contact.html">Contact</a>
+    </nav>
+    <form action="/register" method="post">
+      <label for="f-name">First Name:</label>
+      <input type="f-name" id="f-name" name="f-name" />
+      <div></div>
+      <label for="l-name">Last Name:</label>
+      <input type="l-name" id="l-name" name="l-name" />
+      <div></div>
+      <label for="email">Email:</label>
+      <input type="text" id="email" name="email" />
+      <div></div>
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" />
+      <div></div>
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" name="confirm-password" id="confirm-password" />
+      <div></div>
+    </form>
+    <button class="submit--button">Submit</button>
+  </body>
+</html>

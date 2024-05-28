@@ -1,0 +1,160 @@
+<!-- Collaborator: Mackenzie Whitney -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Information</title>
+    <link rel="stylesheet" href="../styles/contact.css" />
+  </head>
+  <body onload="populateLocationsTable()">
+    <ul>
+      <li><a href="home">Home</a></li>
+      <li><a href="./register.html">Register</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li style="float: right"><a class="active" href="#about">About</a></li>
+    </ul>
+    <h1>Contact Information</h1>
+    <div class="flex-container">
+      <div>
+        <h2>Our Phone Numbers</h2>
+        <p>North American Phone Number: (555)-123-4567</p>
+        <ul>
+          <li>For New or Existing Bookings: ext. 1</li>
+          <li>For Missing or Damaged Bags: ext. 2</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Our E-mail</h2>
+        <p>North America: travel-agency-NA@fake.com</p>
+      </div>
+    </div>
+    <div>
+      <div>
+        <h2>Our Locations</h2>
+        <table id="locationsTable">
+          <tr>
+            <th>Agency</th>
+            <th>Address</th>
+            <th>Phone Number</th>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <!-- todo: more responsive maps, on hover for contact rows -->
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20055.870245635953!2d-114.09407291126833!3d51.071849461637676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716f8c052023b3%3A0x8cf2f8c82586b6e4!2sAirline%20Ticket%20Centre.ca!5e0!3m2!1sen!2sca!4v1716841148543!5m2!1sen!2sca"
+          width="300"
+          height="250"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+    <script>
+      // data is to come from a database in Assignment 2
+      const locations = [
+        {
+          agency: "Downtown Calgary",
+          address: "123 Center Street",
+          phone: "123-4567",
+          agents: [
+            {
+              name: "Nikola",
+              phone: "123-4567",
+            },
+            {
+              name: "Ada",
+              phone: "123-4567",
+            },
+            {
+              name: "Albert",
+              phone: "123-4567",
+            },
+          ],
+        },
+        {
+          agency: "Calgary Northeast",
+          address: "123 Northeast Street",
+          phone: "123-4567",
+          agents: [
+            {
+              name: "Isaac",
+              phone: "123-4567",
+            },
+            {
+              name: "Edith",
+              phone: "123-4567",
+            },
+          ],
+        },
+        {
+          agency: "Edmonton Downtown",
+          address: "123 Downtown Street",
+          phone: "123-4567",
+          agents: [
+            {
+              name: "Grace",
+              phone: "123-4567",
+            },
+            {
+              name: "Alan",
+              phone: "123-4567",
+            },
+          ],
+        },
+      ];
+      function populateLocationsTable() {
+        const locationsTable = document.getElementById("locationsTable");
+        locations.forEach((location) => {
+          const row = document.createElement("tr");
+          // to-do Agency Name as a subheader
+          const agencyCell = document.createElement("td");
+          const agencyCellContent = document.createTextNode(location.agency);
+          agencyCell.appendChild(agencyCellContent);
+          const addressCell = document.createElement("td");
+          const addressCellContent = document.createTextNode(location.address);
+          addressCell.appendChild(addressCellContent);
+          const phoneCell = document.createElement("td");
+          const phoneCellContent = document.createTextNode(location.phone);
+          phoneCell.appendChild(phoneCellContent);
+          row.appendChild(agencyCell);
+          row.appendChild(addressCell);
+          row.appendChild(phoneCell);
+          locationsTable.appendChild(row);
+          const agentHeaderRow = document.createElement("th");
+          const agentHeaderCell = document.createElement("td");
+          const agentHeaderContent = document.createTextNode("Agents");
+          agentHeaderRow.colSpan = 2;
+          agentHeaderRow.align = "right";
+          agentHeaderCell.appendChild(agentHeaderContent);
+          agentHeaderRow.appendChild(agentHeaderCell);
+          locationsTable.appendChild(agentHeaderRow);
+          location.agents.forEach((agent) => {
+            const row = document.createElement("tr");
+            const agentNameCell = document.createElement("td");
+            agentNameCell.colSpan = 2;
+            agentNameCell.align = "right";
+            const agentNameCellContent = document.createTextNode(agent.name);
+            agentNameCell.appendChild(agentNameCellContent);
+            const agentPhoneCell = document.createElement("td");
+            const agentPhoneCellContent = document.createTextNode(agent.phone);
+            agentPhoneCell.appendChild(agentPhoneCellContent);
+            row.appendChild(agentNameCell);
+            row.appendChild(agentPhoneCell);
+            locationsTable.appendChild(row);
+          });
+        });
+
+        /* imgCellContent.addEventListener("click", ()=> {    
+                        const advert = window.open(`${imgLink}`, "", "popup=yes");
+                        setTimeout(() => {
+                            advert.close();
+                            }, 5000);
+                    }); */
+      }
+    </script>
+  </body>
+</html>
