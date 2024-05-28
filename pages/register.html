@@ -15,26 +15,64 @@
   </head>
   <body>
     <nav>
-      <!-- <a href="/overview">Home</a> -->
+      <a href="/overview">Home</a>
       <a href="./contact.html">Contact</a>
     </nav>
     <form action="/register" method="post">
-      <label for="f-name">First Name:</label>
-      <input type="f-name" id="f-name" name="f-name" />
-      <div></div>
-      <label for="l-name">Last Name:</label>
-      <input type="l-name" id="l-name" name="l-name" />
-      <div></div>
-      <label for="email">Email:</label>
-      <input type="text" id="email" name="email" />
-      <div></div>
-      <label for="password">Password:</label>
-      <input type="password" name="password" id="password" />
-      <div></div>
-      <label for="confirm-password">Confirm Password:</label>
-      <input type="password" name="confirm-password" id="confirm-password" />
-      <div></div>
+      <fieldset>
+        <label for="f-name">First Name:</label>
+        <input type="f-name" id="f-name" name="f-name" />
+        <div></div>
+        <label for="l-name">Last Name:</label>
+        <input type="l-name" id="l-name" name="l-name" />
+        <div></div>
+        <label for="home-phone">Home phone-number:</label>
+        <input type="text" id="home-phone" name="home-phone" />
+        <div></div>
+        <label for="business-phone">Business Phone Number:</label>
+        <input type="text" id="business-phone" name="business-phone" />
+        <div></div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" />
+        <div></div>
+        <button class="next--button">Next</button>
+      </fieldset>
+      <fieldset class="hidden">
+        <label for="user-id">User</label>
+        <input type="text" name="user-id" id="user-id" />
+        <div></div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" />
+        <div></div>
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" name="confirm-password" id="confirm-password" />
+        <div></div>
+        <button class="next--button">Next</button
+        ><button class="prev--button">Previous</button>
+      </fieldset>
+      <fieldset class="hidden">
+        <label for="country">Country:</label>
+        <input type="text" name="country" id="country" />
+        <div></div>
+        <label for="city">City:</label>
+        <input type="text" name="city" id="city" />
+        <div></div>
+        <label for="province">Province:</label>
+        <input type="text" name="province" id="province" />
+        <div></div>
+        <label for="postal-code">Postal Code:</label>
+        <input type="text" name="postal-code" id="postal-code" />
+        <div></div>
+        <button class="submit--button">Submit</button>
+        <button class="prev--button">Previous</button>
+      </fieldset>
     </form>
-    <button class="submit--button">Submit</button>
   </body>
 </html>
+
+<!-- 
+    Name
+    Address -> City, Province, Country, Postal Code
+    Home Phone/Business Phone
+    User ID
+ -->

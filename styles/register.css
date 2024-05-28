@@ -90,11 +90,12 @@ a:focus::after {
   transform: translateX(0);
 }
 
-form {
+fieldset {
   display: flex;
   flex-direction: column;
   padding: 2em;
   text-transform: uppercase;
+  border: none;
 }
 
 input,
@@ -113,7 +114,7 @@ textarea {
   height: 7rem;
 }
 
-form > div {
+fieldset > div {
   height: 16px;
   font-size: 12px;
   color: red;
@@ -127,7 +128,6 @@ button {
   padding: 4px 16px;
   background-color: #ecd2a4;
   margin-bottom: 2rem;
-  margin-left: 2rem;
 }
 
 button:hover {
@@ -146,20 +146,18 @@ textarea {
   font-size: 18px;
 }
 
+.hidden {
+  display: none;
+}
+
 @media (min-width: 768px) {
-  form {
+  fieldset {
     padding: 10rem;
-  }
-  button {
-    margin-left: 10rem;
   }
 }
 
 @media (min-width: 1024px) {
-  form {
+  fieldset {
     padding: 0 18rem;
-  }
-  button {
-    margin-left: 18rem;
   }
 }
