@@ -38,7 +38,7 @@ const inputMessages = {
   ["email"]: `Please enter a valid email address in the format John@example.com`,
   ["description"]: "Cannot be left empty",
   ["password"]: `Please enter a valid password with at least 8 characters and one number`,
-  ["confirm-password"]: `Please enter a valid password with at least 8 characters and one number`,
+  ["confirm-password"]: `Please enter a valid password, minimum 8 characters long, one letter and one number`,
   ["postal-code"]: `Please enter a valid postal code in the format A1A1A1`,
   passwordsDontMatch: `Passwords do not match`,
 };
@@ -48,7 +48,10 @@ let inputsAreValid = [];
 
 // LISTENS FOR MOUSEOVER ON INPUTS
 const inputMouseOver = function (inputs) {
-  inputs.forEach((input) => {
+  const inputs1 = inputs.filter(
+    (input) => !input.classList.contains("not-required")
+  );
+  inputs1.forEach((input) => {
     input.addEventListener("mouseenter", () => {
       if (input.value === "")
         toggleInputMessage(input, `This field is required`);
