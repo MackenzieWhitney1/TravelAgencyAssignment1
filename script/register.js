@@ -28,9 +28,9 @@ fieldsets.forEach((fieldset, i) => {
   fieldset.style.transform = `translateX(${i * 300}%)`;
 });
 
+// NEXT BUTTON
 nextButtons.forEach((button) => {
   button.addEventListener(`click`, (e) => {
-    console.log(e);
     const curInputs = button.closest(`fieldset`).querySelectorAll(`input`);
     const [...curInputs1] = curInputs;
     if (submit(e, curInputs1)) {
@@ -42,6 +42,7 @@ nextButtons.forEach((button) => {
   });
 });
 
+// PREVIOUS BUTTON
 prevButtons.forEach((button) => {
   button.addEventListener(`click`, (e) => {
     fieldsetIndex--;
@@ -51,11 +52,18 @@ prevButtons.forEach((button) => {
   });
 });
 
+// SUBMIT FORM ON SUBMIT BUTTON
 submitButton.addEventListener(`click`, (e) => {
   e.preventDefault();
-  console.log(submit(e, inputs1));
   if (submit(e, inputs1)) {
     form.submit();
     window.location.href = "../pages/confirm.html";
+  }
+});
+
+// PREVENT ENTER KEY SUBMISSION
+window.addEventListener(`keydown`, (e) => {
+  if (e.key === `Enter`) {
+    e.preventDefault();
   }
 });
