@@ -1,6 +1,6 @@
-<!-- Collaborator: Mackenzie Whitney -->
 <!DOCTYPE html>
 <html lang="en">
+  <!-- Collaborator: Mackenzie Whitney -->
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,6 @@
       <li><a href="./home.html">Home</a></li>
       <li><a href="./register.html">Register</a></li>
       <li><a href="./contact.html">Contact</a></li>
-      <li style="float: right"><a class="active" href="#about">About</a></li>
     </ul>
     <h1>Contact Information</h1>
     <div class="flex-container">
@@ -30,8 +29,9 @@
       </div>
     </div>
     <div>
-      <div>
+      <div style="float:left">
         <h2>Our Locations</h2>
+        <h3>Hover over or click address of an agency to see it on a map</h3>
         <table id="locationsTable">
           <tr>
             <th>Agency</th>
@@ -40,13 +40,12 @@
           </tr>
         </table>
       </div>
-      <div>
-        <!-- todo: more responsive maps, on hover for contact rows -->
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20055.870245635953!2d-114.09407291126833!3d51.071849461637676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716f8c052023b3%3A0x8cf2f8c82586b6e4!2sAirline%20Ticket%20Centre.ca!5e0!3m2!1sen!2sca!4v1716841148543!5m2!1sen!2sca"
-          width="300"
-          height="250"
-          style="border: 0"
+      <div style="float:center">
+        <iframe id="locationsMap"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d321200.71227947116!2d-114.41747661991606!3d51.02759155127005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170039f843fd5%3A0x266d3bb1b652b63a!2sCalgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716992105963!5m2!1sen!2sca"
+          width="500"
+          height="500"
+          style="border: 0;"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
@@ -59,6 +58,7 @@
         {
           agency: "Downtown Calgary",
           address: "123 Center Street",
+          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20065.797360853532!2d-114.08866707275443!3d51.048939218853974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716ffb86200597%3A0x10c42af1e7df241e!2sDowntown%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716991737519!5m2!1sen!2sca",
           phone: "123-4567",
           agents: [
             {
@@ -76,8 +76,9 @@
           ],
         },
         {
-          agency: "Calgary Northeast",
+          agency: "Northeast Calgary",
           address: "123 Northeast Street",
+          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80150.00212567142!2d-114.07442835976516!3d51.11422441388392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537164eaafa73cfd%3A0x6e35026743f66ce8!2sNortheast%20Calgary%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716991859349!5m2!1sen!2sca",
           phone: "123-4567",
           agents: [
             {
@@ -91,8 +92,9 @@
           ],
         },
         {
-          agency: "Edmonton Downtown",
+          agency: "Downtown Edmonton",
           address: "123 Downtown Street",
+          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18968.055529801688!2d-113.51979751239234!3d53.53979028342088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a02247b272d369%3A0x612824385e498946!2sDowntown%2C%20Edmonton%2C%20AB!5e0!3m2!1sen!2sca!4v1716991919968!5m2!1sen!2sca",
           phone: "123-4567",
           agents: [
             {
@@ -110,7 +112,6 @@
         const locationsTable = document.getElementById("locationsTable");
         locations.forEach((location) => {
           const row = document.createElement("tr");
-          // to-do Agency Name as a subheader
           const agencyCell = document.createElement("td");
           const agencyCellContent = document.createTextNode(location.agency);
           agencyCell.appendChild(agencyCellContent);
@@ -132,6 +133,13 @@
           agentHeaderCell.appendChild(agentHeaderContent);
           agentHeaderRow.appendChild(agentHeaderCell);
           locationsTable.appendChild(agentHeaderRow);
+          const locationsMap = document.getElementById("locationsMap");
+          addressCell.addEventListener("mouseover", ()=>{
+                    locationsMap.setAttribute("src", location.googleMapLink);
+                    });
+          addressCell.addEventListener("click", ()=>{
+            const googleMapWindow = window.open(location.googleMapLink, "", "popup=yes");
+          });
           location.agents.forEach((agent) => {
             const row = document.createElement("tr");
             const agentNameCell = document.createElement("td");
@@ -147,13 +155,6 @@
             locationsTable.appendChild(row);
           });
         });
-
-        /* imgCellContent.addEventListener("click", ()=> {    
-                        const advert = window.open(`${imgLink}`, "", "popup=yes");
-                        setTimeout(() => {
-                            advert.close();
-                            }, 5000);
-                    }); */
       }
     </script>
   </body>
