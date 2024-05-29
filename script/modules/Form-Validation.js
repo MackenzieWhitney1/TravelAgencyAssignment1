@@ -134,7 +134,9 @@ const removeMessage = function (input) {
 
 const toggleInputPatternMismatch = function (input, regexValue, message) {
   const regexResults =
-    regexValue !== undefined ? regexValue.test(input.value) : true;
+    regexValue !== undefined
+      ? regexValue.test(input.value.toLowerCase())
+      : true;
   // CHECKS IF THE INPUT VALUE MATCHES THE REGEX
   // IF ITS DOES, REMOVES THE MESSAGE AND RETURNS TRUE + VICE VERSA
   if (regexResults === true) {

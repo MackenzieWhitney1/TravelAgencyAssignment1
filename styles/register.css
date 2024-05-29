@@ -141,6 +141,7 @@ fieldset section {
 }
 
 button {
+  margin-top: 1rem;
   text-transform: uppercase;
   align-self: flex-start;
   border-radius: 0;

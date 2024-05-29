@@ -12,15 +12,6 @@ const city = document.querySelector(`.city`);
 
 let fieldsetIndex = 0;
 
-const location = Geolocation.getCurrentPosition;
-console.log(location);
-
-const countries = await fetch(
-  `https://api.radar.io/v1/addresses/validate?addressLabel=841+BROADWAY&city=NEW+YORK&stateCode=NY&postalCode=10003&countryCode=US`
-)
-  .then((res) => res.json())
-  .then((data) => console.log(data));
-
 // console.log(nextButton);
 
 form.addEventListener(`submit`, (e) => {
