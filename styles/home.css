@@ -1,0 +1,28 @@
+body {
+  background: linear-gradient(to bottom, rgb(195, 236, 198), rgb(60, 113, 138));
+}
+table,
+th,
+td {
+  border: 1px solid black;
+}
+#thid {
+  color: rgb(0, 66, 66);
+  background: linear-gradient(
+    to bottom right,
+    rgb(255, 212, 112),
+    rgb(255, 226, 231)
+  );
+}
+/*#thid:hover{
+            border: 5px solid black;
+            font-size: xx-large;
+        }*/
+#tdid {
+  color: rgb(0, 45, 1);
+  background: linear-gradient(to bottom, #c6f1ff, #ffffc0);
+}
+#tdid:hover {
+  border: 5px solid black;
+  font-size: xx-large;
+}

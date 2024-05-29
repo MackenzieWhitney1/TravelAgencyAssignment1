@@ -43,7 +43,7 @@ const inputMessages = {
 
 // VARIABLES
 let inputsAreValid = [];
-const form = document.querySelector(`form`);
+// const form = document.querySelector(`form`);
 
 // LISTENS FOR MOUSEOVER ON INPUTS
 const inputMouseOver = function (inputs) {
@@ -80,16 +80,18 @@ const submit = function (event, inputs) {
   // CHECKS FOR INPUTS WITH TEXT, SHOWS 'PLEASE ENTER VALID FORMAT' ON INVALID INPUTS
   let myArr = checkInputsForPattern(inputs);
   const passwords = inputs.filter((input) => input.type === "password");
-  console.log(passwords);
   if (passwords.length > 0) {
     myArr.push(checkPasswords(passwords));
   }
-  console.log(myArr);
   if (myArr.every((x) => x === true)) {
-    form.submit();
+    myArr = [];
+    inputsAreValid = [];
+    return true;
+  } else {
+    myArr = [];
+    inputsAreValid = [];
+    return false;
   }
-  myArr = [];
-  inputsAreValid = [];
 };
 
 // SETS MARGIN-BOTTOM OF EACH INPUT
@@ -121,7 +123,8 @@ const removeMessage = function (input) {
 };
 
 const toggleInputPatternMismatch = function (input, regexValue, message) {
-  const regexResults = regexValue.test(input.value);
+  const regexResults =
+    regexValue !== undefined ? regexValue.test(input.value) : true;
   // CHECKS IF THE INPUT VALUE MATCHES THE REGEX
   // IF ITS DOES, REMOVES THE MESSAGE AND RETURNS TRUE + VICE VERSA
   if (regexResults === true) {

@@ -48,10 +48,23 @@ body {
   height: 100vh;
   width: 100vw;
   flex-direction: column;
-  justify-content: space-between;
   font-family: "Radio Canada Big";
   letter-spacing: 1px;
   font-weight: 500;
+}
+
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  height: 80vh;
+  width: 70vw;
+  margin: auto auto;
+  background-color: #ecd2a4;
+  border-radius: 6px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.144);
 }
 
 nav {
@@ -91,9 +104,10 @@ a:focus::after {
 }
 
 fieldset {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  padding: 2em;
+  /* padding: 2em; */
   text-transform: uppercase;
   border: none;
 }
@@ -116,8 +130,14 @@ textarea {
 
 fieldset > div {
   height: 16px;
-  font-size: 12px;
+  font-size: 10px;
   color: red;
+}
+
+fieldset section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 button {
@@ -126,13 +146,15 @@ button {
   border-radius: 0;
   border: 0;
   padding: 4px 16px;
-  background-color: #ecd2a4;
+  background-color: #6c5f4a;
   margin-bottom: 2rem;
+  color: white;
+  border-radius: 9999px;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #b59f79;
+  background-color: #6c5f4a;
 }
 
 label {
@@ -151,13 +173,15 @@ textarea {
 }
 
 @media (min-width: 768px) {
-  fieldset {
-    padding: 10rem;
+  form {
+    height: 60vh;
+    width: 50vw;
   }
 }
 
 @media (min-width: 1024px) {
-  fieldset {
-    padding: 0 18rem;
+  form {
+    height: 85vh;
+    width: 40vw;
   }
 }
