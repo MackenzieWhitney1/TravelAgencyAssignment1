@@ -9,7 +9,6 @@ export {
 };
 export { regexObj, inputMessages };
 export { telRegex, nameRegex, emailRegex };
-// import { toggleModal } from "./modalToggle.js";
 
 // REGEXES
 const telRegex = /\d{3}[-. ]?\d{3}[-. ]?\d{4}$/;
@@ -18,6 +17,7 @@ const emailRegex =
   /[a-z0-9\._%+!$&*=^|~#%'`?{}/\-]+@([a-z0-9\-]+\.){1,}([a-z]{2,16})/;
 const descriptionRegex = /./;
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+const postalCodeRegex = /^[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]$/;
 
 const regexObj = {
   ["f-name"]: nameRegex,
@@ -27,6 +27,7 @@ const regexObj = {
   ["description"]: descriptionRegex,
   ["password"]: passwordRegex,
   ["confirm-password"]: passwordRegex,
+  ["postal-code"]: postalCodeRegex,
 };
 
 // INPUT MESSAGES
@@ -38,12 +39,12 @@ const inputMessages = {
   ["description"]: "Cannot be left empty",
   ["password"]: `Please enter a valid password with at least 8 characters and one number`,
   ["confirm-password"]: `Please enter a valid password with at least 8 characters and one number`,
+  ["postal-code"]: `Please enter a valid postal code in the format A1A1A1`,
   passwordsDontMatch: `Passwords do not match`,
 };
 
 // VARIABLES
 let inputsAreValid = [];
-// const form = document.querySelector(`form`);
 
 // LISTENS FOR MOUSEOVER ON INPUTS
 const inputMouseOver = function (inputs) {
@@ -75,11 +76,20 @@ const toggleInputColor = function (input, color) {
 
 const submit = function (event, inputs) {
   event.preventDefault();
-  checkInputsForEmpty(inputs);
+  inputs.forEach((input) => {
+    toggleInputColor(input, "black");
+  });
+  const inputs1 = inputs.filter((input) => {
+    if (!input.classList.contains("not-required") || input.value !== "") {
+      return true;
+    }
+  });
+  console.log(inputs1);
+  checkInputsForEmpty(inputs1);
 
   // CHECKS FOR INPUTS WITH TEXT, SHOWS 'PLEASE ENTER VALID FORMAT' ON INVALID INPUTS
-  let myArr = checkInputsForPattern(inputs);
-  const passwords = inputs.filter((input) => input.type === "password");
+  let myArr = checkInputsForPattern(inputs1);
+  const passwords = inputs1.filter((input) => input.type === "password");
   if (passwords.length > 0) {
     myArr.push(checkPasswords(passwords));
   }
@@ -158,37 +168,3 @@ const checkInputsForPattern = function (inputs) {
   });
   return inputsAreValid;
 };
-
-// IGNORE THIS -> WAS FOR TESTING PURPOSES
-// const inputs = document.querySelectorAll(`input`);
-// const [...inputs1] = inputs;
-// const submitButton = document.querySelector(`.submit--button`);
-// const resetButton = document.querySelector(`.reset--button`);
-// const form = document.querySelector(`form`);
-
-// ADDS 'THIS FIELD IS REQUIRED' MESSAGE TO EACH INPUT
-// inputs1.forEach((input) => {
-//   input.addEventListener("mouseover", () => {
-//     toggleInputMessage(input, `This field is required`);
-//   });
-//   input.addEventListener(`mouseout`, () => {
-//     removeMessage(input);
-//   });
-// });
-
-// submitButton.addEventListener(`click`, function (e) {
-//   e.preventDefault();
-//   checkInputsForEmpty(inputs1);
-
-//   const myarr = checkInputsForPattern(inputs1);
-//   if (myarr.every((x) => x === true)) {
-//     console.log(`form submitted`);
-//   }
-
-//   inputsAreValid = [];
-// });
-
-// PREVENT FORM SUBMISSION BECAUSE IT WILL BE TRIGGERED BY THE SUBMIT BUTTON
-// form.addEventListener(`submit`, (e) => {
-//   e.preventDefault();
-// });

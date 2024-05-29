@@ -7,8 +7,19 @@ const form = document.querySelector(`form`);
 const nextButtons = document.querySelectorAll(`.next--button`);
 const prevButtons = document.querySelectorAll(`.prev--button`);
 const fieldsets = document.querySelectorAll(`fieldset`);
+const country = document.querySelector(`.country`);
+const city = document.querySelector(`.city`);
 
 let fieldsetIndex = 0;
+
+const location = Geolocation.getCurrentPosition;
+console.log(location);
+
+const countries = await fetch(
+  `https://api.radar.io/v1/addresses/validate?addressLabel=841+BROADWAY&city=NEW+YORK&stateCode=NY&postalCode=10003&countryCode=US`
+)
+  .then((res) => res.json())
+  .then((data) => console.log(data));
 
 // console.log(nextButton);
 
@@ -24,20 +35,17 @@ inputMouseOver(inputs1);
 // });
 fieldsets.forEach((fieldset, i) => {
   fieldset.style.transform = `translateX(${i * 300}%)`;
-  console.log(fieldset);
 });
 
 nextButtons.forEach((button) => {
   button.addEventListener(`click`, (e) => {
+    console.log(e);
     const curInputs = button.closest(`fieldset`).querySelectorAll(`input`);
-    console.log(curInputs);
     const [...curInputs1] = curInputs;
     if (submit(e, curInputs1)) {
       fieldsetIndex++;
-      console.log(fieldsetIndex);
       fieldsets.forEach((fieldset, i) => {
         fieldset.style.transform = `translateX(${300 * (i - fieldsetIndex)}%`;
-        console.log(fieldset);
       });
     }
   });
@@ -47,9 +55,7 @@ prevButtons.forEach((button) => {
   button.addEventListener(`click`, (e) => {
     fieldsetIndex--;
     fieldsets.forEach((fieldset, i) => {
-      console.log(fieldsetIndex);
       fieldset.style.transform = `translateX(${300 * (i - fieldsetIndex)}%`;
-      console.log(fieldset);
     });
   });
 });
