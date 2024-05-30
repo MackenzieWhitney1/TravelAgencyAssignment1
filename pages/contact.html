@@ -15,14 +15,13 @@
   </head>
   <nav>
     <a href="./home.html">Home</a>
-    <a href="./register.html">Register</a>
+    <a href="./contact.html">Contact</a>
   </nav>
   <body onload="populateLocationsTable()">
-    <ul>
-      <li><a href="./home.html">Home</a></li>
-      <li><a href="./register.html">Register</a></li>
-      <li><a href="./contact.html">Contact</a></li>
-    </ul>
+    <nav>
+      <a href="./home.html">Home</a>
+      <a href="./register.html">Register</a>
+    </nav>
     <h1>Contact Information</h1>
     <div class="flex-container">
       <div>
@@ -53,7 +52,7 @@
       <div style="float: center">
         <iframe
           id="locationsMap"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d321200.71227947116!2d-114.41747661991606!3d51.02759155127005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170039f843fd5%3A0x266d3bb1b652b63a!2sCalgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716992105963!5m2!1sen!2sca"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.385655353428!2d-114.09083652390187!3d51.045966444308256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716fe76e972489%3A0xaacb381ac8c8399e!2s1155%208%20Ave%20SW%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1717083358121!5m2!1sen!2sca"
           width="500"
           height="500"
           style="border: 0"
@@ -67,60 +66,58 @@
       // data is to come from a database in Assignment 2
       const locations = [
         {
-          agency: "Downtown Calgary",
-          address: "123 Center Street",
-          googleMapLink:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20065.797360853532!2d-114.08866707275443!3d51.048939218853974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716ffb86200597%3A0x10c42af1e7df241e!2sDowntown%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716991737519!5m2!1sen!2sca",
-          phone: "123-4567",
+          agency: "Calgary",
+          address: "1155 8th Ave SW, Calgary, AB, T2P1N3",
+          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.385655353428!2d-114.09083652390187!3d51.045966444308256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716fe76e972489%3A0xaacb381ac8c8399e!2s1155%208%20Ave%20SW%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1717083358121!5m2!1sen!2sca",
+          phone: "(403) 271-9873",
           agents: [
             {
-              name: "Nikola",
-              phone: "123-4567",
+              name: "Janet Delton",
+              phone: "(403) 210-7801",
             },
             {
-              name: "Ada",
-              phone: "123-4567",
+              name: "Judy Lisle",
+              phone: "(403) 210-7802",
             },
             {
-              name: "Albert",
-              phone: "123-4567",
+              name: "Dennis Reynolds",
+              phone: "(403) 210-7843",
             },
+            {
+              name: "John Coville",
+              phone: "(403) 210-7823",
+            },
+            {
+              name: "Beverly Jones",
+              phone: "(403) 210-7812",
+            }
           ],
         },
         {
-          agency: "Northeast Calgary",
-          address: "123 Northeast Street",
-          googleMapLink:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80150.00212567142!2d-114.07442835976516!3d51.11422441388392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537164eaafa73cfd%3A0x6e35026743f66ce8!2sNortheast%20Calgary%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716991859349!5m2!1sen!2sca",
-          phone: "123-4567",
+          agency: "Okotoks",
+          address: "110 Main Street, Okotoks, AB, T7R3J5",
+          // location doesn't exist on map
+          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.3543219656235!2d-113.97037362392174!3d50.73191686705841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537199c9b3b424d3%3A0x7ffd70b532d128f2!2s110%20Okotoks%20Dr%2C%20Okotoks%2C%20AB!5e0!3m2!1sen!2sca!4v1717083471587!5m2!1sen!2sca",
+          phone: "(403) 563-2381",
           agents: [
             {
-              name: "Isaac",
-              phone: "123-4567",
+              name: "Fred Smith",
+              phone: "(403) 210-5555",
             },
             {
-              name: "Edith",
-              phone: "123-4567",
+              name: "Bruce Dixon",
+              phone: "(403) 210-7867",
             },
+            {
+              name: "Jane Merrill",
+              phone: "(403) 210-7868",
+            },
+            {
+              name: "Brian Peterson",
+              phone: "(403) 210-7833",
+            }
           ],
-        },
-        {
-          agency: "Downtown Edmonton",
-          address: "123 Downtown Street",
-          googleMapLink:
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18968.055529801688!2d-113.51979751239234!3d53.53979028342088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a02247b272d369%3A0x612824385e498946!2sDowntown%2C%20Edmonton%2C%20AB!5e0!3m2!1sen!2sca!4v1716991919968!5m2!1sen!2sca",
-          phone: "123-4567",
-          agents: [
-            {
-              name: "Grace",
-              phone: "123-4567",
-            },
-            {
-              name: "Alan",
-              phone: "123-4567",
-            },
-          ],
-        },
+        }
       ];
       function populateLocationsTable() {
         const locationsTable = document.getElementById("locationsTable");
