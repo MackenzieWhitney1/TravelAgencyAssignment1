@@ -196,20 +196,13 @@ textarea {
   }
 }
 
-@media (min-width: 1000px) and (min-height: 500px) {
-  form {
-    height: 90vh;
-    width: 35vw;
-  }
-}
-
 @media (min-width: 1024px) {
   form {
-    height: 60vh;
+    height: 70vh;
     width: 20vw;
   }
   nav {
-    padding: 8px 40rem;
+    padding: 8px 30rem;
   }
   body > div {
     display: flex;
