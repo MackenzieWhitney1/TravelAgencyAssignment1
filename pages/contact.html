@@ -13,10 +13,6 @@
       rel="stylesheet"
     />
   </head>
-  <nav>
-    <a href="./home.html">Home</a>
-    <a href="./contact.html">Contact</a>
-  </nav>
   <body onload="populateLocationsTable()">
     <nav>
       <a href="./home.html">Home</a>
@@ -68,7 +64,8 @@
         {
           agency: "Calgary",
           address: "1155 8th Ave SW, Calgary, AB, T2P1N3",
-          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.385655353428!2d-114.09083652390187!3d51.045966444308256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716fe76e972489%3A0xaacb381ac8c8399e!2s1155%208%20Ave%20SW%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1717083358121!5m2!1sen!2sca",
+          googleMapLink:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2508.385655353428!2d-114.09083652390187!3d51.045966444308256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716fe76e972489%3A0xaacb381ac8c8399e!2s1155%208%20Ave%20SW%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1717083358121!5m2!1sen!2sca",
           phone: "(403) 271-9873",
           agents: [
             {
@@ -90,14 +87,15 @@
             {
               name: "Beverly Jones",
               phone: "(403) 210-7812",
-            }
+            },
           ],
         },
         {
           agency: "Okotoks",
           address: "110 Main Street, Okotoks, AB, T7R3J5",
           // location doesn't exist on map
-          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.3543219656235!2d-113.97037362392174!3d50.73191686705841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537199c9b3b424d3%3A0x7ffd70b532d128f2!2s110%20Okotoks%20Dr%2C%20Okotoks%2C%20AB!5e0!3m2!1sen!2sca!4v1717083471587!5m2!1sen!2sca",
+          googleMapLink:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2525.3543219656235!2d-113.97037362392174!3d50.73191686705841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537199c9b3b424d3%3A0x7ffd70b532d128f2!2s110%20Okotoks%20Dr%2C%20Okotoks%2C%20AB!5e0!3m2!1sen!2sca!4v1717083471587!5m2!1sen!2sca",
           phone: "(403) 563-2381",
           agents: [
             {
@@ -115,9 +113,9 @@
             {
               name: "Brian Peterson",
               phone: "(403) 210-7833",
-            }
+            },
           ],
-        }
+        },
       ];
       function populateLocationsTable() {
         const locationsTable = document.getElementById("locationsTable");
