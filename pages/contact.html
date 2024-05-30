@@ -7,6 +7,10 @@
     <title>Contact Information</title>
     <link rel="stylesheet" href="../styles/contact.css" />
   </head>
+  <nav>
+    <a href="./home.html">Home</a>
+    <a href="./contact.html">Contact</a>
+  </nav>
   <body onload="populateLocationsTable()">
     <ul>
       <li><a href="./home.html">Home</a></li>
@@ -29,7 +33,7 @@
       </div>
     </div>
     <div>
-      <div style="float:left">
+      <div style="float: left">
         <h2>Our Locations</h2>
         <h3>Hover over or click address of an agency to see it on a map</h3>
         <table id="locationsTable">
@@ -40,12 +44,13 @@
           </tr>
         </table>
       </div>
-      <div style="float:center">
-        <iframe id="locationsMap"
+      <div style="float: center">
+        <iframe
+          id="locationsMap"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d321200.71227947116!2d-114.41747661991606!3d51.02759155127005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537170039f843fd5%3A0x266d3bb1b652b63a!2sCalgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716992105963!5m2!1sen!2sca"
           width="500"
           height="500"
-          style="border: 0;"
+          style="border: 0"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
@@ -58,7 +63,8 @@
         {
           agency: "Downtown Calgary",
           address: "123 Center Street",
-          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20065.797360853532!2d-114.08866707275443!3d51.048939218853974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716ffb86200597%3A0x10c42af1e7df241e!2sDowntown%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716991737519!5m2!1sen!2sca",
+          googleMapLink:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d20065.797360853532!2d-114.08866707275443!3d51.048939218853974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53716ffb86200597%3A0x10c42af1e7df241e!2sDowntown%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716991737519!5m2!1sen!2sca",
           phone: "123-4567",
           agents: [
             {
@@ -78,7 +84,8 @@
         {
           agency: "Northeast Calgary",
           address: "123 Northeast Street",
-          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80150.00212567142!2d-114.07442835976516!3d51.11422441388392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537164eaafa73cfd%3A0x6e35026743f66ce8!2sNortheast%20Calgary%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716991859349!5m2!1sen!2sca",
+          googleMapLink:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d80150.00212567142!2d-114.07442835976516!3d51.11422441388392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x537164eaafa73cfd%3A0x6e35026743f66ce8!2sNortheast%20Calgary%2C%20Calgary%2C%20AB!5e0!3m2!1sen!2sca!4v1716991859349!5m2!1sen!2sca",
           phone: "123-4567",
           agents: [
             {
@@ -94,7 +101,8 @@
         {
           agency: "Downtown Edmonton",
           address: "123 Downtown Street",
-          googleMapLink: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18968.055529801688!2d-113.51979751239234!3d53.53979028342088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a02247b272d369%3A0x612824385e498946!2sDowntown%2C%20Edmonton%2C%20AB!5e0!3m2!1sen!2sca!4v1716991919968!5m2!1sen!2sca",
+          googleMapLink:
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18968.055529801688!2d-113.51979751239234!3d53.53979028342088!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a02247b272d369%3A0x612824385e498946!2sDowntown%2C%20Edmonton%2C%20AB!5e0!3m2!1sen!2sca!4v1716991919968!5m2!1sen!2sca",
           phone: "123-4567",
           agents: [
             {
@@ -134,11 +142,15 @@
           agentHeaderRow.appendChild(agentHeaderCell);
           locationsTable.appendChild(agentHeaderRow);
           const locationsMap = document.getElementById("locationsMap");
-          addressCell.addEventListener("mouseover", ()=>{
-                    locationsMap.setAttribute("src", location.googleMapLink);
-                    });
-          addressCell.addEventListener("click", ()=>{
-            const googleMapWindow = window.open(location.googleMapLink, "", "popup=yes");
+          addressCell.addEventListener("mouseover", () => {
+            locationsMap.setAttribute("src", location.googleMapLink);
+          });
+          addressCell.addEventListener("click", () => {
+            const googleMapWindow = window.open(
+              location.googleMapLink,
+              "",
+              "popup=yes"
+            );
           });
           location.agents.forEach((agent) => {
             const row = document.createElement("tr");
