@@ -51,6 +51,19 @@ body {
   font-family: "Radio Canada Big";
   letter-spacing: 1px;
   font-weight: 500;
+  overflow: hidden;
+}
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.image-container h1 {
+  display: none;
 }
 
 form {
@@ -59,16 +72,16 @@ form {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  height: 80vh;
+  height: 85vh;
   width: 70vw;
   margin: auto auto;
-  background-color: #ecd2a4;
-  border-radius: 6px;
-  box-shadow: 5px 5px rgba(0, 0, 0, 0.144);
+  /* background-color: #ecd2a4; */
+  background-color: #f2f2f2;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.068);
 }
 
 nav {
-  background-color: #ecd2a4;
+  background-color: #44474a;
   align-items: center;
   display: flex;
   justify-content: space-around;
@@ -79,10 +92,11 @@ nav > a {
   display: block;
   position: relative;
   padding: 0.2em 0;
-  color: black;
+  color: white;
   text-transform: uppercase;
   text-decoration: none;
   overflow: hidden;
+  z-index: 1;
 }
 
 nav a::after {
@@ -110,6 +124,7 @@ fieldset {
   /* padding: 2em; */
   text-transform: uppercase;
   border: none;
+  transition: transform 300ms ease-in-out;
 }
 
 input,
@@ -147,15 +162,16 @@ button {
   border-radius: 0;
   border: 0;
   padding: 4px 16px;
-  background-color: #6c5f4a;
+  background-color: #44474a;
   margin-bottom: 2rem;
   color: white;
   border-radius: 9999px;
+  transition: all 200ms;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #6c5f4a;
+  background-color: #937261;
 }
 
 label {
@@ -180,9 +196,43 @@ textarea {
   }
 }
 
+@media (min-width: 1000px) and (min-height: 500px) {
+  form {
+    height: 90vh;
+    width: 35vw;
+  }
+}
+
 @media (min-width: 1024px) {
   form {
-    height: 85vh;
-    width: 40vw;
+    height: 60vh;
+    width: 20vw;
+  }
+  nav {
+    padding: 8px 40rem;
+  }
+  body > div {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .image-container {
+    position: relative;
+    width: 50vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .image-container img {
+    height: 100vh;
+  }
+  .image-container h1 {
+    display: block;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    text-align: center;
+    color: white;
   }
 }

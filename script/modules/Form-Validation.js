@@ -8,11 +8,11 @@ export {
   inputMouseOver,
 };
 export { regexObj, inputMessages };
-export { telRegex, nameRegex, emailRegex };
+export { telRegex, textRegex, emailRegex };
 
 // REGEXES
 const telRegex = /\d{3}[-. ]?\d{3}[-. ]?\d{4}$/;
-const nameRegex = /^[A-Za-z]+$/;
+const textRegex = /^[A-Za-z]+$/;
 const emailRegex =
   /[a-z0-9\._%+!$&*=^|~#%'`?{}/\-]+@([a-z0-9\-]+\.){1,}([a-z]{2,16})/;
 const descriptionRegex = /./;
@@ -20,8 +20,8 @@ const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 const postalCodeRegex = /^[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]+[a-zA-Z]+[0-9]$/;
 
 const regexObj = {
-  ["f-name"]: nameRegex,
-  ["l-name"]: nameRegex,
+  ["f-name"]: textRegex,
+  ["l-name"]: textRegex,
   ["tel"]: telRegex,
   ["email"]: emailRegex,
   ["description"]: descriptionRegex,
@@ -37,7 +37,7 @@ const inputMessages = {
   ["tel"]: `Please enter a valid phone number in the format 555-555-5555 with or without a '-', '.' or space`,
   ["email"]: `Please enter a valid email address in the format John@example.com`,
   ["description"]: "Cannot be left empty",
-  ["password"]: `Please enter a valid password with at least 8 characters and one number`,
+  ["password"]: `Please enter a valid password, minimum 8 characters long, one letter and one number`,
   ["confirm-password"]: `Please enter a valid password, minimum 8 characters long, one letter and one number`,
   ["postal-code"]: `Please enter a valid postal code in the format A1A1A1`,
   passwordsDontMatch: `Passwords do not match`,
