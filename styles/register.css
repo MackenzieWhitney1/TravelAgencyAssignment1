@@ -198,12 +198,18 @@ textarea {
 
 @media (min-width: 1024px) {
   form {
-    height: 70vh;
-    width: 20vw;
+    height: 35rem;
+    width: 20rem;
   }
   nav {
-    padding: 8px 30rem;
+    padding: 8px 20rem;
   }
+
+  form > div {
+    height: 12px;
+    font-size: 12px;
+  }
+
   body > div {
     display: flex;
     flex-direction: row;
