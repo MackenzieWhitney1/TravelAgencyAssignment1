@@ -3,6 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Radio Canada Big";
+  background-color: burlywood;
 }
 
 nav {
@@ -54,6 +55,7 @@ a:focus::after {
 table,
 th,
 td {
+  background-color: whitesmoke;
   border: 1px solid black;
 }
 @media (min-width: 1024px) {
