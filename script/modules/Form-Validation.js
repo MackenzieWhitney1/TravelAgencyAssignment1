@@ -28,6 +28,9 @@ const regexObj = {
   ["password"]: passwordRegex,
   ["confirm-password"]: passwordRegex,
   ["postal-code"]: postalCodeRegex,
+  ["city"]: textRegex,
+  ["province"]: textRegex,
+  ["country"]: textRegex,
 };
 
 // INPUT MESSAGES
@@ -40,6 +43,9 @@ const inputMessages = {
   ["password"]: `Please enter a valid password, minimum 8 characters long, one letter and one number`,
   ["confirm-password"]: `Please enter a valid password, minimum 8 characters long, one letter and one number`,
   ["postal-code"]: `Please enter a valid postal code in the format A1A1A1`,
+  ["city"]: `Please enter a valid city`,
+  ["province"]: `Please enter a valid province`,
+  ["country"]: `Please enter a valid country`,
   passwordsDontMatch: `Passwords do not match`,
 };
 
