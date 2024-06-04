@@ -1,3 +1,4 @@
+//author: Erin Bough
 const pkgsName = [
   "Caribbean New Year",
   "Polynesian Paradise",
@@ -14,22 +15,29 @@ const pkgsDescription = [
 ];
 const pkgsBasePrice = [4800.0, 3000.0, 2800.0, 3000.0];
 const pkgsAgencyCommission = [400.0, 310.0, 300.0, 280.0];
+//takes package information from pre-defined arrays and displays it in a table
 function displayPackages() {
   let table = document.getElementById("tb");
-  let n = pkgsName.length;
+  let n = pkgsName.length;//n represents the number of packages
   let s = 350 * n;
-  //s.toString();
+  //set the width of the table to 350 x n pixels, where n is the number of packages.
+  //in other words, there are 350 pixels allocated for each package
   table.style.width = s + "px";
-  let acRow = table.insertRow(0);
-  let bpRow = table.insertRow(0);
-  let desRow = table.insertRow(0);
-  let edRow = table.insertRow(0);
-  let sdRow = table.insertRow(0);
+  //create rows, insert them into tables, save them as variables
+  let agentCommissionRow = table.insertRow(0);
+  let basePriceRow = table.insertRow(0);
+  let descriptionRow = table.insertRow(0);
+  let endDateRow = table.insertRow(0);
+  let startDateRow = table.insertRow(0);
   let nameRow = table.insertRow(0);
-  let thID = '<th id="thid">';
-  let tdID = '<td id="tdid">';
-  for (i = 0; i < 4; i++) {
-    name = pkgsName[i];
+  //create table elements with ids for easy manipulation with css
+  let tableHeaderID = '<th id="thid">';
+  let tableDocumentID = '<td id="tdid">';
+  //for each package, add the data of that package to the table
+  for (i = 0; i < n; i++) {
+    //the hardcoded arrays are placed into variables, so that the hardcoded arrays can easily be replaced
+    //by simply inserting a different input into the existing variables
+    packageName = pkgsName[i];
     startDate = pkgsStartDate[i];
     endDate = pkgsEndDate[i];
     description = pkgsDescription[i];
@@ -38,19 +46,22 @@ function displayPackages() {
     agencyCommission = pkgsAgencyCommission[i];
     agencyCommission.toString();
 
-    nameRow.insertCell(0).outerHTML = thID + name + "</th>";
-    sdRow.insertCell(0).outerHTML = tdID + startDate + "</td>";
-    edRow.insertCell(0).outerHTML = tdID + endDate + "</td>";
-    desRow.insertCell(0).outerHTML = tdID + description + "</td>";
-    bpRow.insertCell(0).outerHTML = tdID + "$" + basePrice + "</td>";
-    acRow.insertCell(0).outerHTML = tdID + "$" + agencyCommission + "</td>";
+    //create a cell, set the outerHTML of the cell to a table element with an ID and with information
+    //insert the cell in the 0th place of its respective row (the last element added will appear first)
+    nameRow.insertCell(0).outerHTML = tableHeaderID + packageName + "</th>";
+    startDateRow.insertCell(0).outerHTML = tableDocumentID + startDate + "</td>";
+    endDateRow.insertCell(0).outerHTML = tableDocumentID + endDate + "</td>";
+    descriptionRow.insertCell(0).outerHTML = tableDocumentID + description + "</td>";
+    basePriceRow.insertCell(0).outerHTML = tableDocumentID + "$" + basePrice + "</td>";
+    agentCommissionRow.insertCell(0).outerHTML = tableDocumentID + "$" + agencyCommission + "</td>";
   }
-  nameRow.insertCell(0).outerHTML = thID + "Package</th>";
-  sdRow.insertCell(0).outerHTML = tdID + "Start Date</td>";
-  edRow.insertCell(0).outerHTML = tdID + "End Date</td>";
-  desRow.insertCell(0).outerHTML = tdID + "Description</td>";
-  bpRow.insertCell(0).outerHTML = tdID + "Price</td>";
-  acRow.insertCell(0).outerHTML = tdID + "Agent Commission</td>";
+  //finally, add the legend/header of each row in the very first (leftmost) cell
+  nameRow.insertCell(0).outerHTML = tableHeaderID + "Package</th>";
+  startDateRow.insertCell(0).outerHTML = tableDocumentID + "Start Date</td>";
+  endDateRow.insertCell(0).outerHTML = tableDocumentID + "End Date</td>";
+  descriptionRow.insertCell(0).outerHTML = tableDocumentID + "Description</td>";
+  basePriceRow.insertCell(0).outerHTML = tableDocumentID + "Price</td>";
+  agentCommissionRow.insertCell(0).outerHTML = tableDocumentID + "Agent Commission</td>";
 }
 
 displayPackages();
