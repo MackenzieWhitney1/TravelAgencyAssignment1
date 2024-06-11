@@ -15,21 +15,6 @@ app.use("/api", api);
 
 const port = 8000;
 
-<<<<<<< HEAD
-=======
-const connection = mySql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "travelexperts",
-});
-
-connection.connect((err) => {
-  if (err) throw err;
-  console.log(`Connection established`);
-});
-
->>>>>>> 0bdafaf87cc06fdb9669dd7ffd86807fcf0a2d2d
 app.get(["/", "/home"], (req, res) => {
   res.status(200).sendFile(__dirname + "/views/home.html");
 });
