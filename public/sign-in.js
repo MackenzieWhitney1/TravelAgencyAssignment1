@@ -2,13 +2,21 @@ const form = document.querySelector(`form`);
 const submitButton = document.querySelector(`button`);
 const username = document.querySelector(`.username`);
 const password = document.querySelector(`.password`);
+const usernameOutput = document.querySelector(`.username-output`);
+const passwordOutput = document.querySelector(`.password-output`);
+
+[username, password].forEach((input) => {
+  input.addEventListener(`click`, function (e) {
+    document.querySelector(`.${e.target.className}-output`).textContent = "";
+  });
+});
 
 const checkData = function (data) {
   document.cookie = `token=${data.token}`;
   if (data.user === false && data.password === false) {
-    document.querySelector(`div`).textContent = "User does not exist";
+    usernameOutput.textContent = "User does not exist";
   } else if (data.username !== false && data.password === false) {
-    document.querySelector(`div`).textContent = "Password is incorrect";
+    passwordOutput.textContent = "Password is incorrect";
   } else if (data.username !== false && data.password !== false) {
     window.location.href = "/profile";
   }

@@ -6,40 +6,47 @@
     <link rel="stylesheet" href="/sign-in.css" />
     <script defer src="/sign-in.js"></script>
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <nav>
       <a href="./home.html">Home</a>
       <a href="./contact.html">Contact</a>
     </nav>
-    <div class="img-container">
-      <img src="/register.jpg" alt="" />
+    <div class="content-container">
+      <div class="img-container">
+        <img src="/register.jpg" alt="" />
+      </div>
+      <article>
+        <section>
+          <h1>WELCOME</h1>
+          <a href="/register">Register here</a>
+          <div class="or">
+            <span></span>
+            <p>OR</p>
+            <span></span>
+          </div>
+        </section>
+        <form
+          class="form"
+          action="/api/sign-in"
+          method="post"
+          style="display: flex; flex-direction: column; width: 20rem"
+        >
+          <label for="username">Username:</label>
+          <input type="text" name="username" class="username" />
+          <div class="username-output"></div>
+          <label for="password">Password:</label>
+          <input type="password" name="password" class="password" />
+          <div class="password-output"></div>
+          <button type="submit">submit</button>
+        </form>
+      </article>
     </div>
-    <article>
-      <section>
-        <h1>WELCOME</h1>
-        <p>REGISTER</p>
-        <div>
-          <span></span>
-          <p>OR</p>
-          <span></span>
-        </div>
-        <p>SIGN IN</p>
-      </section>
-      <form
-        class="form"
-        action="/api/sign-in"
-        method="post"
-        style="display: flex; flex-direction: column; width: 20rem"
-      >
-        <label for="username">username</label>
-        <input type="text" name="username" class="username" />
-        <div></div>
-        <label for="password">password</label>
-        <input type="text" name="password" class="password" />
-        <div></div>
-        <button type="submit">submit</button>
-      </form>
-    </article>
   </body>
 </html>
