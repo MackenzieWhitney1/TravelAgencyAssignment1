@@ -1,15 +1,38 @@
 const trips = document.querySelector(`.trips-container`);
+const name = document.querySelector(`.name`);
+
+const randomNum = function () {
+  const num = Math.floor(Math.random() * 11 + 1);
+  return num;
+};
 
 const renderTrips = function (data) {
-  console.log(data);
-  data.forEach((trip) => {
+  name.textContent = `Hello ${data.name}`;
+
+  const tripsFiltered = data.trips.filter(
+    (trip) => !trip.Description.toLowerCase().includes("cancel")
+  );
+
+  tripsFiltered.forEach((trip) => {
+    const startDate = new Date(trip.TripStart).toDateString();
+    const endDate = new Date(trip.TripEnd).toDateString();
+
     trips.insertAdjacentHTML(
       "afterbegin",
       `
-            <h1></h1>
-            <p></p>
-            <p></p>
-            <p></p>
+            <div class="trip-card">
+          <div class="img-container">
+            <img src="/tripsImages/trip--${randomNum()}.jpg" alt="" />
+          </div>
+          <div class="content">
+            <h1>${trip.Destination}</h1>
+            <p>Trip Start: ${startDate}</p>
+            <p>Trip End: ${endDate}</p>
+            <button><a href="/profile/trip/${
+              trip.BookingId
+            }">View Trip</a></button>
+          </div>
+        </div>
             `
     );
   });

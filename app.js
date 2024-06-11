@@ -35,8 +35,17 @@ app.get("/admin", verifyToken, (req, res) => {
   res.status(200).sendFile(__dirname + "/views/admin.html");
 });
 
-app.get("/profile", verifyToken, (req, res) => {
+app.get("/profile/", verifyToken, (req, res) => {
   res.status(200).sendFile(__dirname + "/views/profile.html");
+});
+
+app.get("/profile/trip/:tripId", (req, res) => {
+  console.log(req.params.tripId);
+  res.status(200).sendFile(__dirname + "/views/trip.html");
+});
+
+app.get("/profile/book-trip", verifyToken, (req, res) => {
+  res.status(200).sendFile(__dirname + "/views/book-trip.html");
 });
 
 app.get("/sign-in", (req, res) => {

@@ -7,6 +7,7 @@ const fs = require("fs");
 const app = express();
 const select = require("./public/modules/sqlFunctions.js");
 const connection = require("./public/modules/connection.js");
+const url = require("url");
 
 const keyFile = fs.readFileSync("./jsonToken/privateKey.json", "utf8");
 const keys = JSON.parse(keyFile);
@@ -25,17 +26,25 @@ router.get("/register", async (req, res) => {
 });
 
 router.get("/profile", async (req, res) => {
+  console.log(req.query.id);
   const token = req.headers.cookie.split("token=")[1];
   const decoded = jwt.verify(token, keys.primaryKey);
+  const data = await select(
+    "CustFirstName",
+    "customers",
+    `CustomerId=${decoded.userid}`
+  );
   const sql =
     "SELECT * FROM `bookings` JOIN `bookingdetails` ON bookings.BookingId=bookingdetails.BookingDetailId WHERE bookings.CustomerId=" +
     decoded.userid;
   connection.query(sql, (err, results) => {
-    res.status(200).json(results);
+    res.status(200).json({ trips: results, name: data[0].CustFirstName });
   });
 });
 
-// SELECT * FROM `bookings` JOIN `bookingdetails` ON  "BookingId"="BookingDetailId" WHERE CustomerId='104' ORDER BY bookings.BookingId ASC;
+router.get("/profile/tripId", (req, res) => {
+  console.log(req.query.id);
+});
 
 router.post("/register", async (req, res) => {
   const pass = await argon2.hash(req.body.password);

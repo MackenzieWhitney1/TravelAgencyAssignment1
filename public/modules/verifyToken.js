@@ -12,7 +12,7 @@ const verifyToken = function (req, res, next) {
   try {
     const decoded = jwt.verify(token, keys.primaryKey);
     req.username = decoded.username;
-    if (req.url === "/profile") {
+    if (req.url === "/profile" || req.url === "/profile/book-trip") {
       next();
     } else {
       decoded.isAdmin ? next() : res.status(401).redirect("/sign-in");
