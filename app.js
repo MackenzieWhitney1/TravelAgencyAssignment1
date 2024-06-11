@@ -43,6 +43,11 @@ app.get("/sign-in", (req, res) => {
   res.status(200).sendFile(__dirname + "/views/sign-in.html");
 });
 
+app.get("/sign-out", (req, res) => {
+  res.clearCookie("token");
+  res.status(200).sendFile(__dirname + "/views/sign-in.html");
+});
+
 app.get("/access-denied", (req, res) => {
   res.status(200).sendFile(__dirname + "/views/noAccess.html");
 });
