@@ -7,7 +7,7 @@ const fs = require("fs");
 const app = express();
 const select = require("./public/modules/sqlFunctions.js");
 const connection = require("./public/modules/connection.js");
-const url = require("url");
+const { setMaxListeners } = require("events");
 
 const keyFile = fs.readFileSync("./jsonToken/privateKey.json", "utf8");
 const keys = JSON.parse(keyFile);
@@ -16,6 +16,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 router.get("/admin", async (req, res) => {
+  const data = await select("*", "packages");
+  res.status(200).json(data);
+});
+
+router.get("/home", async (req, res) => {
   const data = await select("*", "packages");
   res.status(200).json(data);
 });
@@ -42,8 +47,19 @@ router.get("/profile", async (req, res) => {
   });
 });
 
-router.get("/profile/tripId", (req, res) => {
-  console.log(req.query.id);
+router.get("/contactAgencies", (req, res) => {
+  const sql = "SELECT * FROM agencies;";
+  connection.query(sql, function (err, response) {
+    res.status(200).json(response);
+  });
+});
+
+router.get("/contactAgents", (req, res) => {
+  const sql =
+    "SELECT AgencyId, AgtFirstName, AgtLastName, AgtBusPhone FROM agents;";
+  connection.query(sql, function (err, response) {
+    res.status(200).json(response);
+  });
 });
 
 router.post("/register", async (req, res) => {
