@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
 const mySql = require("mysql");
-const argon2 = require("argon2");
-const jwt = require("jsonwebtoken");
-const fs = require("fs");
 const api = require("./api.js");
 const verifyToken = require("./public/modules/verifyToken");
+const connection = require("./public/modules/connection.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -16,18 +14,6 @@ app.use(express.static(__dirname + "/Images"));
 app.use("/api", api);
 
 const port = 8000;
-
-const connection = mySql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "testing",
-});
-
-connection.connect((err) => {
-  if (err) throw err;
-  console.log(`Connection established`);
-});
 
 app.get(["/", "/home"], (req, res) => {
   res.status(200).sendFile(__dirname + "/views/home.html");

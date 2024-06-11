@@ -4,13 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
+    <link rel="stylesheet" href="/profile.css" />
     <script defer src="/profile.js"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    This is the profile page:
+    <nav>
+      <a href="/sign-out">Sign Out</a>
+      <a href="/contact">Contact</a>
+      <a href="/home">Home</a>
+    </nav>
     <article>
+      <h1>Hello</h1>
       <h1>Your Trips</h1>
-      <section class="trips-container"></section>
+      <section class="trips-container">
+        <div class="trip-card">
+          <div class="img-container">
+            <img src="/tripsImages/trip--1.jpg" alt="" />
+          </div>
+          <h1>Destination</h1>
+          <p>Trip Start</p>
+          <p>Trip End</p>
+          <button><a href="/profile/view=BookingId">View trip</a></button>
+        </div>
+      </section>
     </article>
   </body>
 </html>
