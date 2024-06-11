@@ -3,21 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/sign-in.css" />
     <script defer src="/sign-in.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <form
-      action="/api/sign-in"
-      method="post"
-      style="display: flex; flex-direction: column; width: 20rem"
-    >
-      <label for="username">username</label>
-      <input type="text" name="username" class="username" />
-      <label for="password">password</label>
-      <input type="text" name="password" class="password" />
-      <div></div>
-      <button type="submit">submit</button>
-    </form>
+    <nav>
+      <a href="./home.html">Home</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+    <div class="img-container">
+      <img src="/register.jpg" alt="" />
+    </div>
+    <article>
+      <section>
+        <h1>WELCOME</h1>
+        <p>REGISTER</p>
+        <div>
+          <span></span>
+          <p>OR</p>
+          <span></span>
+        </div>
+        <p>SIGN IN</p>
+      </section>
+      <form
+        class="form"
+        action="/api/sign-in"
+        method="post"
+        style="display: flex; flex-direction: column; width: 20rem"
+      >
+        <label for="username">username</label>
+        <input type="text" name="username" class="username" />
+        <div></div>
+        <label for="password">password</label>
+        <input type="text" name="password" class="password" />
+        <div></div>
+        <button type="submit">submit</button>
+      </form>
+    </article>
   </body>
 </html>
