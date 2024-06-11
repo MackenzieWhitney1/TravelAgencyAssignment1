@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="/sign-in.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <form
+      action="/api/sign-in"
+      method="post"
+      style="display: flex; flex-direction: column; width: 20rem"
+    >
+      <label for="username">username</label>
+      <input type="text" name="username" class="username" />
+      <label for="password">password</label>
+      <input type="text" name="password" class="password" />
+      <div></div>
+      <button type="submit">submit</button>
+    </form>
+  </body>
+</html>

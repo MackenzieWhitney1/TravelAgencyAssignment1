@@ -1,5 +1,6 @@
 import { submit, inputMouseOver } from "./modules/Form-Validation.js";
 
+const select = document.querySelector(`select`);
 const inputs = document.querySelectorAll(`input`);
 const [...inputs1] = inputs;
 const submitButton = document.querySelector(`.submit--button`);
@@ -57,7 +58,7 @@ submitButton.addEventListener(`click`, (e) => {
   e.preventDefault();
   if (submit(e, inputs1)) {
     form.submit();
-    window.location.href = "../pages/confirm.html";
+    // window.location.href = "/confirm";
   }
 });
 
@@ -67,3 +68,23 @@ window.addEventListener(`keydown`, (e) => {
     e.preventDefault();
   }
 });
+
+// document.querySelector(`.sign-in`).addEventListener(`click`, () => {
+//   window.location.href = "/sign-in";
+// });
+
+const renderAgents = function (data) {
+  console.log(data);
+  data.forEach((agent) => {
+    select.insertAdjacentHTML(
+      "afterbegin",
+      `
+      <option value="${agent.AgentId}">${agent.AgtFirstName} ${agent.AgtLastName}</option>
+      `
+    );
+  });
+};
+
+fetch("api/register", { method: "GET" })
+  .then((res) => res.json())
+  .then((data) => renderAgents(data));

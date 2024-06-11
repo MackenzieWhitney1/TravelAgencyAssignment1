@@ -93,7 +93,6 @@ const submit = function (event, inputs) {
       return true;
     }
   });
-  console.log(inputs1);
   checkInputsForEmpty(inputs1);
 
   // CHECKS FOR INPUTS WITH TEXT, SHOWS 'PLEASE ENTER VALID FORMAT' ON INVALID INPUTS

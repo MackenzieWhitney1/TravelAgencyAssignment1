@@ -1,3 +1,5 @@
+console.log(`hello world`);
+
 const pkgsName = [
   "Caribbean New Year",
   "Polynesian Paradise",
