@@ -6,19 +6,19 @@ const keys = JSON.parse(keyFile);
 
 const verifyToken = function (req, res, next) {
   const cookies = req.headers.cookie;
-  if (!cookies) return res.status(401).redirect("/access-denied");
+  if (!cookies) return res.status(401).redirect("/sign-in");
   const token = cookies.split("token=")[1];
-  if (!token) return res.status(401).redirect("/access-denied");
+  if (!token) return res.status(401).redirect("/sign-in");
   try {
     const decoded = jwt.verify(token, keys.primaryKey);
     req.username = decoded.username;
     if (req.url === "/profile") {
       next();
     } else {
-      decoded.isAdmin ? next() : res.status(401).redirect("/access-denied");
+      decoded.isAdmin ? next() : res.status(401).redirect("/sign-in");
     }
   } catch (err) {
-    res.status(401).redirect("/access-denied");
+    res.status(401).redirect("/sign-in");
   }
 };
 

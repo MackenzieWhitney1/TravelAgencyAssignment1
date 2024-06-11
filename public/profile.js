@@ -1,6 +1,7 @@
 const trips = document.querySelector(`.trips-container`);
 
 const renderTrips = function (data) {
+  console.log(data);
   data.forEach((trip) => {
     trips.insertAdjacentHTML(
       "afterbegin",
