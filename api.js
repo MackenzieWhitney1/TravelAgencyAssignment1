@@ -35,7 +35,19 @@ router.get("/profile", async (req, res) => {
   });
 });
 
-// SELECT * FROM `bookings` JOIN `bookingdetails` ON  "BookingId"="BookingDetailId" WHERE CustomerId='104' ORDER BY bookings.BookingId ASC;
+router.get("/contactAgencies", (req, res) => {
+  const sql = "SELECT * FROM agencies;";
+  connection.query(sql, function (err, response) {
+    res.status(200).json(response);
+  })
+});
+
+router.get("/contactAgents", (req, res) => {
+  const sql = "SELECT AgencyId, AgtFirstName, AgtLastName, AgtBusPhone FROM agents;";
+  connection.query(sql, function (err, response) {
+    res.status(200).json(response);
+  })
+});
 
 router.post("/register", async (req, res) => {
   const pass = await argon2.hash(req.body.password);
