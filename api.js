@@ -7,6 +7,7 @@ const fs = require("fs");
 const app = express();
 const select = require("./public/modules/sqlFunctions.js");
 const connection = require("./public/modules/connection.js");
+const { setMaxListeners } = require("events");
 
 const keyFile = fs.readFileSync("./jsonToken/privateKey.json", "utf8");
 const keys = JSON.parse(keyFile);
@@ -17,6 +18,11 @@ app.use(express.urlencoded({ extended: true }));
 router.get("/admin", async (req, res) => {
   const data = await select("*", "packages");
   res.status(200).json(data);
+});
+
+router.get("/home", async(req, res)=>{
+  const data = await select("*","packages")
+  res.status(200).json(data)
 });
 
 router.get("/register", async (req, res) => {

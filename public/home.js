@@ -1,24 +1,21 @@
 //author: Erin Bough
-const pkgsName = [
-  "Caribbean New Year",
-  "Polynesian Paradise",
-  "Asian Expedition",
-  "European Vacation",
-];
-const pkgsStartDate = ["2017-12-25", "2016-12-12", "2016-05-14", "2016-11-01"];
-const pkgsEndDate = ["2017-01-04", "2016-12-20", "2016-05-28", "2016-11-14"];
-const pkgsDescription = [
-  "Cruise the Caribbean & Celebrate the New Year.",
-  "8 Day All Inclusive Hawaiian Vacation",
-  "Airfaire, Hotel and Eco Tour.",
-  "Euro Tour with Rail Pass and Travel Insurance",
-];
-const pkgsBasePrice = [4800.0, 3000.0, 2800.0, 3000.0];
-const pkgsAgencyCommission = [400.0, 310.0, 300.0, 280.0];
+
+fetch("api/home", { method: "GET" })
+  .then((res) => res.json())
+  .then((data) => displayPackages(data));
+
 //takes package information from pre-defined arrays and displays it in a table
-function displayPackages() {
+function displayPackages(data) {
+  function dateParse(date){
+    y=parseInt(date.slice(0,4));
+    m=parseInt(date.slice(5,7));
+    d=parseInt(date.slice(8));
+    return y*366+m*32+d;
+  }
+  console.log(typeof(data[0].PkgStartDate));
+  console.log(data);
   let table = document.getElementById("tb");
-  let n = pkgsName.length;//n represents the number of packages
+  let n = data.length;
   let s = 350 * n;
   //set the width of the table to 350 x n pixels, where n is the number of packages.
   //in other words, there are 350 pixels allocated for each package
@@ -35,16 +32,20 @@ function displayPackages() {
   let tableDocumentID = '<td id="tdid">';
   //for each package, add the data of that package to the table
   for (i = 0; i < n; i++) {
-    //the hardcoded arrays are placed into variables, so that the hardcoded arrays can easily be replaced
-    //by simply inserting a different input into the existing variables
-    packageName = pkgsName[i];
-    startDate = pkgsStartDate[i];
-    endDate = pkgsEndDate[i];
-    description = pkgsDescription[i];
-    basePrice = pkgsBasePrice[i];
-    basePrice.toString();
-    agencyCommission = pkgsAgencyCommission[i];
-    agencyCommission.toString();
+    packageName = data[i].PkgName;
+    startDate = data[i].PkgStartDate;
+    dateLen=10;
+    startDate=startDate.slice(0,dateLen);
+    sdi=dateParse(startDate);
+    endDate = data[i].PkgEndDate;
+    endDate=endDate.slice(0,dateLen);
+    edi=dateParse(endDate);
+    description = data[i].PkgDesc;
+    basePrice = data[i].PkgBasePrice;
+    agencyCommission = data[i].PkgAgencyCommission;
+    if (sdi>=edi){
+      continue;
+    }
 
     //create a cell, set the outerHTML of the cell to a table element with an ID and with information
     //insert the cell in the 0th place of its respective row (the last element added will appear first)
