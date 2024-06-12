@@ -1,13 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const mySql = require("mysql");
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const app = express();
 const select = require("./public/modules/sqlFunctions.js");
 const connection = require("./public/modules/connection.js");
-const { setMaxListeners } = require("events");
 
 const keyFile = fs.readFileSync("./jsonToken/privateKey.json", "utf8");
 const keys = JSON.parse(keyFile);
@@ -47,18 +45,26 @@ router.get("/profile", async (req, res) => {
   });
 });
 
-router.get("/contactAgencies", (req, res) => {
-  const sql = "SELECT * FROM agencies;";
-  connection.query(sql, function (err, response) {
-    res.status(200).json(response);
-  });
+router.get("/contactAgencies", async (req, res) => {
+  const data = await select("*", "agencies");
+  res.status(200).json(data);
 });
 
-router.get("/contactAgents", (req, res) => {
+router.get("/contactAgents", async (req, res) => {
+  const data = await select(
+    "AgencyId, AgtFirstName, AgtLastName, AgtBusPhone",
+    "agents"
+  );
+  res.status(200).json(data);
+});
+
+router.post("/trip", (req, res) => {
   const sql =
-    "SELECT AgencyId, AgtFirstName, AgtLastName, AgtBusPhone FROM agents;";
-  connection.query(sql, function (err, response) {
-    res.status(200).json(response);
+    "SELECT BookingDate, TripStart, TripEnd, Description, BasePrice, AgencyCommission, SupConFirstName, SupConLastName, SupConCompany, SupConBusPhone, SupConEmail, ProdName, TTName, CCName, CCNumber, CCExpiry, AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, CustFirstName, CustLastName FROM bookings JOIN bookingdetails ON bookings.BookingId=bookingdetails.BookingId JOIN Customers ON bookings.CustomerId=customers.CustomerId JOIN products_suppliers ON bookingdetails.ProductSupplierId=products_suppliers.ProductSupplierId JOIN products ON products_suppliers.ProductId=products.ProductId JOIN suppliercontacts ON products_suppliers.SupplierId=suppliercontacts.SupplierId JOIN triptypes ON bookings.TripTypeId=triptypes.TripTypeId JOIN creditcards ON customers.CustomerId=creditcards.CustomerId JOIN agents ON customers.AgentId=agents.AgentId WHERE bookings.BookingId=" +
+    req.body.tripId;
+  console.log(sql);
+  connection.query(sql, (err, result) => {
+    res.status(200).json(result);
   });
 });
 
@@ -122,3 +128,5 @@ router.post("/sign-in", async (req, res) => {
 });
 
 module.exports = router;
+
+// BookingDate, TripStart, TripEnd, Description, BasePrice, AgencyCommission, SupConFirstName, SupConLastName, SupConCompany, SupCoBusPhone, SupConEmail, TTName, CCName, CCNumber, CCExpiry, AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition

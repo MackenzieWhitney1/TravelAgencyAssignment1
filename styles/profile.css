@@ -68,6 +68,7 @@ article h1:last-child {
   flex-direction: column;
   gap: 2rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .trip-card {
@@ -156,4 +157,41 @@ nav a::after {
 a:hover::after,
 a:focus::after {
   transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .trip-card {
+    width: 50vw;
+  }
+  .img-container {
+    width: 50vw;
+  }
+  img {
+    min-height: 40vh;
+    margin-top: -10%;
+    width: 50vw;
+  }
+  .trips-container {
+    gap: 8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .trips-container {
+    flex-direction: row;
+    overflow-y: scroll;
+    width: 100vw;
+    padding: 2vw 10vw;
+  }
+  .trip-card {
+    width: 30vw;
+  }
+  .img-container {
+    width: 30vw;
+  }
+  img {
+    min-height: 40vh;
+    margin-top: -10%;
+    width: 30vw;
+  }
 }

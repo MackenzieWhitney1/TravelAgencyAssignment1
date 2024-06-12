@@ -58,7 +58,6 @@ submitButton.addEventListener(`click`, (e) => {
   e.preventDefault();
   if (submit(e, inputs1)) {
     form.submit();
-    // window.location.href = "/confirm";
   }
 });
 
@@ -68,10 +67,6 @@ window.addEventListener(`keydown`, (e) => {
     e.preventDefault();
   }
 });
-
-// document.querySelector(`.sign-in`).addEventListener(`click`, () => {
-//   window.location.href = "/sign-in";
-// });
 
 const renderAgents = function (data) {
   console.log(data);

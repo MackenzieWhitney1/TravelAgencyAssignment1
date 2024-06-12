@@ -1,9 +1,7 @@
 const express = require("express");
 const app = express();
-const mySql = require("mysql");
 const api = require("./api.js");
 const verifyToken = require("./public/modules/verifyToken");
-const connection = require("./public/modules/connection.js");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -39,8 +37,8 @@ app.get("/profile/", verifyToken, (req, res) => {
   res.status(200).sendFile(__dirname + "/views/profile.html");
 });
 
-app.get("/profile/trip/:tripId", (req, res) => {
-  console.log(req.params.tripId);
+app.get("/profile/trip/:tripId&:img", (req, res) => {
+  console.log(req.params);
   res.status(200).sendFile(__dirname + "/views/trip.html");
 });
 
