@@ -38,7 +38,6 @@ app.get("/profile/", verifyToken, (req, res) => {
 });
 
 app.get("/profile/trip/:tripId&:img", (req, res) => {
-  console.log(req.params);
   res.status(200).sendFile(__dirname + "/views/trip.html");
 });
 

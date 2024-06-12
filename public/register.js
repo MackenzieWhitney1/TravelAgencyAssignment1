@@ -13,18 +13,12 @@ const city = document.querySelector(`.city`);
 
 let fieldsetIndex = 0;
 
-// console.log(nextButton);
-
 form.addEventListener(`submit`, (e) => {
   e.preventDefault();
 });
 
 inputMouseOver(inputs1);
 
-// submitButton.addEventListener(`click`, (e) => {
-//   e.preventDefault();
-//   submit(e, inputs1);
-// });
 fieldsets.forEach((fieldset, i) => {
   fieldset.style.transform = `translateX(${i * 300}%)`;
 });
@@ -69,7 +63,6 @@ window.addEventListener(`keydown`, (e) => {
 });
 
 const renderAgents = function (data) {
-  console.log(data);
   data.forEach((agent) => {
     select.insertAdjacentHTML(
       "afterbegin",

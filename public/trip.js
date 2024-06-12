@@ -3,15 +3,12 @@ const img = url[2];
 const tripId = url[1].split("&")[0];
 const body = document.querySelector(`body`);
 const reformatDate = function (date) {
-  console.log(date);
   return new Date(date).toDateString();
 };
 
 const renderTrip = function (data) {
   const data1 = data[0];
-  console.log(data1);
   const tripStart = reformatDate(data1.TripStart);
-  console.log(tripStart);
   const tripEnd = reformatDate(data1.TripEnd);
   const bookingDate = reformatDate(data1.BookingDate);
   const creditCard = data1.CCNumber.slice(

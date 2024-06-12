@@ -29,7 +29,6 @@ router.get("/register", async (req, res) => {
 });
 
 router.get("/profile", async (req, res) => {
-  console.log(req.query.id);
   const token = req.headers.cookie.split("token=")[1];
   const decoded = jwt.verify(token, keys.primaryKey);
   const data = await select(
@@ -62,7 +61,6 @@ router.post("/trip", (req, res) => {
   const sql =
     "SELECT BookingDate, TripStart, TripEnd, Description, BasePrice, AgencyCommission, SupConFirstName, SupConLastName, SupConCompany, SupConBusPhone, SupConEmail, ProdName, TTName, CCName, CCNumber, CCExpiry, AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, CustFirstName, CustLastName FROM bookings JOIN bookingdetails ON bookings.BookingId=bookingdetails.BookingId JOIN Customers ON bookings.CustomerId=customers.CustomerId JOIN products_suppliers ON bookingdetails.ProductSupplierId=products_suppliers.ProductSupplierId JOIN products ON products_suppliers.ProductId=products.ProductId JOIN suppliercontacts ON products_suppliers.SupplierId=suppliercontacts.SupplierId JOIN triptypes ON bookings.TripTypeId=triptypes.TripTypeId JOIN creditcards ON customers.CustomerId=creditcards.CustomerId JOIN agents ON customers.AgentId=agents.AgentId WHERE bookings.BookingId=" +
     req.body.tripId;
-  console.log(sql);
   connection.query(sql, (err, result) => {
     res.status(200).json(result);
   });
