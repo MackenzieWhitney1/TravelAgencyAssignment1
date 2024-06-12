@@ -178,8 +178,8 @@ a:focus::after {
 
 @media (min-width: 1024px) {
   .trips-container {
+    overflow-x: scroll;
     flex-direction: row;
-    overflow-y: scroll;
     width: 100vw;
     padding: 0 10vw;
     white-space: nowrap;

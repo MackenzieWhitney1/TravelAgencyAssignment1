@@ -22,6 +22,8 @@ const renderTrip = function (data) {
   const creditCardExpiry = reformatDate(data1.CCExpiry);
   const description = data1.Description.split(/[-\ \/]/);
 
+  console.log(data1);
+
   body.insertAdjacentHTML(
     `afterbegin`,
     `
@@ -38,14 +40,14 @@ const renderTrip = function (data) {
           </aside>
       </section>
       <section class="dates">
-        <h1>Travel Dates</h1>
+        <h1>Travel Details</h1>
         <p><ion-icon name="airplane"></ion-icon>Departure: ${tripStart}</p>
         <p><ion-icon name="airplane"></ion-icon>Return: ${tripEnd}</p>
         <p><ion-icon name="calendar"></ion-icon>Booked on: ${bookingDate}</p>
         <p><ion-icon name="briefcase"></ion-icon>Class: ${data1.TTName}</p>
       </section>
       <section class="details">
-        <h1>Details</h1>
+        <h1>Supply Details</h1>
         <div class="trip-supplies">
           <div class="trip-supply-container">
             <h1>Trip Supplies</h1>

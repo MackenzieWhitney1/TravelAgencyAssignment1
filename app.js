@@ -56,7 +56,7 @@ app.get("/sign-in", (req, res) => {
 
 app.get("/sign-out", (req, res) => {
   res.clearCookie("token");
-  res.status(200).sendFile(__dirname + "/views/sign-in.html");
+  res.status(200).redirect("/sign-in");
 });
 
 app.get("/access-denied", (req, res) => {
