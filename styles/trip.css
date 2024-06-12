@@ -350,3 +350,56 @@ a:hover::after,
 a:focus::after {
   transform: translateX(0);
 }
+
+@media (min-width: 768px) {
+  /* prettier-ignore */
+  .dates, .details, .fees, .contact {
+    padding: 5rem 10rem;
+  }
+  .dates h1,
+  .details h1,
+  .fees h1,
+  .contact h1 {
+    font-size: 36px;
+  }
+  .dates p,
+  .details p,
+  .fees p,
+  .contact p {
+    font-size: 22px;
+  }
+  ion-icon {
+    transform: scale(2.5);
+  }
+  .fee-container {
+    margin-bottom: 2rem;
+  }
+
+  .contact div,
+  .card {
+    gap: 2rem;
+  }
+  .img-container aside h1 {
+    font-size: 36px;
+  }
+  .img-container aside h3 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .img-container img {
+    width: 100vw;
+    margin-top: -60%;
+  }
+  .img-container aside {
+    width: 40vw;
+    left: 25%;
+  }
+  .dates,
+  .details,
+  .fees,
+  .contact {
+    padding: 20rem 30rem;
+  }
+}

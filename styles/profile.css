@@ -86,7 +86,7 @@ article h1:last-child {
 
 img {
   width: 80vw;
-  min-height: 40vh;
+  height: 40vh;
 }
 
 .content {
@@ -181,7 +181,8 @@ a:focus::after {
     flex-direction: row;
     overflow-y: scroll;
     width: 100vw;
-    padding: 2vw 10vw;
+    padding: 0 10vw;
+    white-space: nowrap;
   }
   .trip-card {
     width: 30vw;
@@ -190,8 +191,9 @@ a:focus::after {
     width: 30vw;
   }
   img {
+    height: auto;
     min-height: 40vh;
-    margin-top: -10%;
+    margin-top: -50%;
     width: 30vw;
   }
 }

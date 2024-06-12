@@ -216,4 +216,8 @@ a:focus::after {
   form {
     margin: auto;
   }
+
+  .or {
+    width: 20rem;
+  }
 }
