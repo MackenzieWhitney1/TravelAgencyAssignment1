@@ -1,3 +1,4 @@
+// Author: Mackenzie Whitney
 const tripSelector = document.getElementById("tripSelector");
 const tripTypes = document.getElementById("tripTypes");
 const request1 = fetch('/api/book-trip-packages').then(response => response.json());
@@ -28,8 +29,4 @@ function populateFormDropdowns(packageData, tripTypeData){
       var firstRadioButton = document.getElementsByName("tripType")[0];
       firstRadioButton.checked = "checked";
    })
-}
-
-function submitTripValidation(){
-    
 }

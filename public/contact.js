@@ -1,3 +1,4 @@
+    // Author: Mackenzie Whitney
     const request1 = fetch('api/contactAgencies').then(response => response.json());
     const request2 = fetch('api/contactAgents').then(response => response.json());
     Promise.all([request1, request2])
