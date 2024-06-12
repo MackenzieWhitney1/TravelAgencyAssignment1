@@ -136,7 +136,7 @@ router.post("/sign-in", async (req, res) => {
 });
 
 router.get("/book-trip-packages", async (req, res) => {
-  const data = await select("PackageId, PkgName", "packages");
+  const data = await select("PackageId, PkgName", "packages", "PkgStartDate <= PkgEndDate");
   res.status(200).json(data);
 });
 
