@@ -25,7 +25,9 @@ function populateFormDropdowns(packageData, tripTypeData){
       var label = document.createElement('label');
       label.textContent = tripType.TTName;
       tripTypes.appendChild(label);
-    })
+      var firstRadioButton = document.getElementsByName("tripType")[0];
+      firstRadioButton.checked = "checked";
+   })
 }
 
 function submitTripValidation(){

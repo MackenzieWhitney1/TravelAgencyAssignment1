@@ -27,8 +27,14 @@
         <br>
         <label for="bookingNumber">Booking Number: <input name="bookingNumber"></label>
         <br>
-        <label for="travelerCountInput">Traveler Count: <input type="range" min="1" max="5" value="1" class="slider" id="travelerCountInput" name="travelerCountInput" oninput="travelerCountOutput.value = travelerCountInput.value">
-          <output id="travelerCountOutput">1</output></label>
+        <label for="travelerCountInput">Traveler Count: 
+          <select name="travelerCountInput" id="travelerCountInput">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
         <br>
         <div id="tripTypes">Trip Type: </div>
         <input type="submit" name="formSubmit" value="Submit">
