@@ -26,7 +26,7 @@
       <form action="/api/book-trip" method="POST">
         <label for="tripSelector">Select your trip: <select type="dropdown" name="tripSelector" id="tripSelector"></select></label>
         <br>
-        <label for="bookingNumber">Booking Number: <input name="bookingNumber"></label>
+        <label for="bookingNumber">Booking Number: <input name="bookingNumber"></input></label>
         <br>
         <label for="travelerCountInput">Traveler Count: 
           <select name="travelerCountInput" id="travelerCountInput">
@@ -38,6 +38,19 @@
         </select>
         <br>
         <div id="tripTypes">Trip Type: </div>
+        <br>
+        <label for="itineraryNo">Itinerary Number:  <input name="itineraryNo" type="number" min="1"></input></label>
+        <br>
+        <label for="tripStart">Trip Start: <input name="tripStart" type="date"></input></label>
+        <label for="tripEnd">Trip End: <input name="tripEnd" type="date"></input></label>
+        <br>
+        <label for="description">Description: <input name="description"></input></label>
+        <br>
+        <label for="destination">Destination: <input name="destination"></input></label>
+        <label for="regionSelector">Region: <select type="dropdown" name="regionSelector" id="regionSelector"></select></label>
+        <br>
+        <label for="classSelector">Class: <select type="dropdown" name="classSelector" id="classSelector"></select></label>
+        <br>
         <input type="submit" name="formSubmit" value="Submit">
       </form>
       </div>
