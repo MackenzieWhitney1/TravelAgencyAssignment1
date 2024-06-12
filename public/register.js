@@ -13,18 +13,12 @@ const city = document.querySelector(`.city`);
 
 let fieldsetIndex = 0;
 
-// console.log(nextButton);
-
 form.addEventListener(`submit`, (e) => {
   e.preventDefault();
 });
 
 inputMouseOver(inputs1);
 
-// submitButton.addEventListener(`click`, (e) => {
-//   e.preventDefault();
-//   submit(e, inputs1);
-// });
 fieldsets.forEach((fieldset, i) => {
   fieldset.style.transform = `translateX(${i * 300}%)`;
 });
@@ -58,7 +52,6 @@ submitButton.addEventListener(`click`, (e) => {
   e.preventDefault();
   if (submit(e, inputs1)) {
     form.submit();
-    // window.location.href = "/confirm";
   }
 });
 
@@ -69,12 +62,7 @@ window.addEventListener(`keydown`, (e) => {
   }
 });
 
-// document.querySelector(`.sign-in`).addEventListener(`click`, () => {
-//   window.location.href = "/sign-in";
-// });
-
 const renderAgents = function (data) {
-  console.log(data);
   data.forEach((agent) => {
     select.insertAdjacentHTML(
       "afterbegin",

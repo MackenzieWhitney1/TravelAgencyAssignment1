@@ -1,9 +1,12 @@
+// VARIABLES
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 
+// READS KEY FILE
 const keyFile = fs.readFileSync("./jsonToken/privateKey.json", "utf8");
 const keys = JSON.parse(keyFile);
 
+// VERIFIES TOKEN, CHECKS TO SEE IF COOKIE/TOKEN EXISTS, IF NOT REDIRECTS TO SIGN-IN. IF THE TOKEN DOES EXIST, CHECKS TO SEE IF THE KEY MATCHES KEY FILE
 const verifyToken = function (req, res, next) {
   const cookies = req.headers.cookie;
   if (!cookies) return res.status(401).redirect("/sign-in");

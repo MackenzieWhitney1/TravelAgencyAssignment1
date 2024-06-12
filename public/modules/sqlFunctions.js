@@ -1,5 +1,4 @@
 const mySql = require("mysql");
-
 const connection = mySql.createConnection({
   host: "localhost",
   user: "root",
@@ -7,6 +6,7 @@ const connection = mySql.createConnection({
   database: "travelexperts",
 });
 
+//SELECT FUNCTION. RETURNS SELECT QUERY
 connection.connect((err) => {
   if (err) throw err;
   console.log(`API Connection established`);

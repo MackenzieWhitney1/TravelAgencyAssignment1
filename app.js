@@ -1,20 +1,23 @@
+// VARIABLES
 const express = require("express");
 const app = express();
-const mySql = require("mysql");
 const api = require("./api.js");
 const verifyToken = require("./public/modules/verifyToken");
-const connection = require("./public/modules/connection.js");
 
+// APP SETUP
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/styles"));
 app.use(express.static(__dirname + "/Images"));
+
+// API ROUTE
 app.use("/api", api);
 
 const port = 8000;
 
+// GET REQUESTS FOR FILES
 app.get(["/", "/home"], (req, res) => {
   res.status(200).sendFile(__dirname + "/views/home.html");
 });
@@ -39,8 +42,7 @@ app.get("/profile/", verifyToken, (req, res) => {
   res.status(200).sendFile(__dirname + "/views/profile.html");
 });
 
-app.get("/profile/trip/:tripId", (req, res) => {
-  console.log(req.params.tripId);
+app.get("/profile/trip/:tripId&:img", (req, res) => {
   res.status(200).sendFile(__dirname + "/views/trip.html");
 });
 
@@ -54,7 +56,7 @@ app.get("/sign-in", (req, res) => {
 
 app.get("/sign-out", (req, res) => {
   res.clearCookie("token");
-  res.status(200).sendFile(__dirname + "/views/sign-in.html");
+  res.status(200).redirect("/sign-in");
 });
 
 app.get("/access-denied", (req, res) => {
