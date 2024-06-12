@@ -132,11 +132,9 @@ router.get("/book-trip-types", async (req, res) => {
 });
 
 router.post("/book-trip", async (req, res) => {
-  console.log(req.body);
   const date = new Date();
   const token = req.headers.cookie.split("token=")[1];
   const decoded = jwt.verify(token, keys.primaryKey);
-  console.log(decoded);
   const values = [
     date,
     req.body["bookingNumber"],
@@ -145,7 +143,6 @@ router.post("/book-trip", async (req, res) => {
     req.body["tripType"],
     req.body["tripSelector"]
   ];
-  console.log(values);
   const sql =
     "INSERT INTO `bookings` \
     (`BookingId`, `BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`,  `TripTypeId`, `PackageId`) \
