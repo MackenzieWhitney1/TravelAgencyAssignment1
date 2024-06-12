@@ -1,18 +1,23 @@
+// VARIABLES
 const express = require("express");
 const app = express();
 const api = require("./api.js");
 const verifyToken = require("./public/modules/verifyToken");
 
+// APP SETUP
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/views"));
 app.use(express.static(__dirname + "/styles"));
 app.use(express.static(__dirname + "/Images"));
+
+// API ROUTE
 app.use("/api", api);
 
 const port = 8000;
 
+// GET REQUESTS FOR FILES
 app.get(["/", "/home"], (req, res) => {
   res.status(200).sendFile(__dirname + "/views/home.html");
 });

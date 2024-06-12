@@ -1,3 +1,4 @@
+// NOT IN USE
 const packageContainer = document.querySelector(`.package-container`);
 const renderData = function (data) {};
 

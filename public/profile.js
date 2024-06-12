@@ -1,3 +1,4 @@
+// VARIABLES
 const trips = document.querySelector(`.trips-container`);
 const name = document.querySelector(`.name`);
 
@@ -6,6 +7,7 @@ const randomNum = function () {
   return num;
 };
 
+// RENDERS TRIPS IN PROFILE PAGES
 const renderTrips = function (data) {
   name.textContent = `Hello ${data.name}`;
 

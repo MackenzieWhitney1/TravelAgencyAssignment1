@@ -1,11 +1,15 @@
+// VARIABLES
 const url = window.location.href.split("=");
 const img = url[2];
 const tripId = url[1].split("&")[0];
 const body = document.querySelector(`body`);
+
+// FUNCTIONS
 const reformatDate = function (date) {
   return new Date(date).toDateString();
 };
 
+// REDNERS TRIP
 const renderTrip = function (data) {
   const data1 = data[0];
   const tripStart = reformatDate(data1.TripStart);
@@ -108,6 +112,7 @@ const renderTrip = function (data) {
   );
 };
 
+// FETCHES TRIP DATA
 fetch("/api/trip", {
   method: "POST",
   headers: { Accept: "application/json", "Content-type": "application/json" },
