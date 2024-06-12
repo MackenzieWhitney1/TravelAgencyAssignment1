@@ -66,9 +66,20 @@ router.get("/contactAgents", async (req, res) => {
 
 // SENDS A WHOLE THWACK OF DATA BASED ON BOOKINGID. USED FOR TRIP PAGE
 router.post("/trip", (req, res) => {
+  // IF TRIPID === STRING, RETURN 'bookings.BookingId=368' ELSE return 'bookings.BookingId=1 OR bookings.BookingId=2'...
+  const whereClause =
+    typeof req.body.tripId === "string"
+      ? `bookings.BookingId=${req.body.tripId}`
+      : req.body.tripId.reduce((acc, cur, i) => {
+          return (acc +=
+            i === req.body.tripId.length - 1
+              ? `bookings.BookingId=${cur}`
+              : `bookings.BookingId=${cur} OR `);
+        }, "");
+
   const sql =
-    "SELECT BookingDate, TripStart, TripEnd, Description, BasePrice, AgencyCommission, SupConFirstName, SupConLastName, SupConCompany, SupConBusPhone, SupConEmail, ProdName, TTName, CCName, CCNumber, CCExpiry, AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, CustFirstName, CustLastName FROM bookings JOIN bookingdetails ON bookings.BookingId=bookingdetails.BookingId JOIN Customers ON bookings.CustomerId=customers.CustomerId JOIN products_suppliers ON bookingdetails.ProductSupplierId=products_suppliers.ProductSupplierId JOIN products ON products_suppliers.ProductId=products.ProductId JOIN suppliercontacts ON products_suppliers.SupplierId=suppliercontacts.SupplierId JOIN triptypes ON bookings.TripTypeId=triptypes.TripTypeId JOIN creditcards ON customers.CustomerId=creditcards.CustomerId JOIN agents ON customers.AgentId=agents.AgentId WHERE bookings.BookingId=" +
-    req.body.tripId;
+    "SELECT Destination, BookingDate, TripStart, TripEnd, Description, BasePrice, AgencyCommission, SupConFirstName, SupConLastName, SupConCompany, SupConBusPhone, SupConEmail, ProdName, TTName, CCName, CCNumber, CCExpiry, AgtFirstName, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, CustFirstName, CustLastName FROM bookings JOIN bookingdetails ON bookings.BookingId=bookingdetails.BookingId JOIN Customers ON bookings.CustomerId=customers.CustomerId JOIN products_suppliers ON bookingdetails.ProductSupplierId=products_suppliers.ProductSupplierId JOIN products ON products_suppliers.ProductId=products.ProductId JOIN suppliercontacts ON products_suppliers.SupplierId=suppliercontacts.SupplierId JOIN triptypes ON bookings.TripTypeId=triptypes.TripTypeId JOIN creditcards ON customers.CustomerId=creditcards.CustomerId JOIN agents ON customers.AgentId=agents.AgentId WHERE " +
+    whereClause;
   connection.query(sql, (err, result) => {
     res.status(200).json(result);
   });
