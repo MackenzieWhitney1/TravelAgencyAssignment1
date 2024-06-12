@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <head>
+      <!-- Author: Mackenzie Whitney -->
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/profile.css" />
+      <link href="https://fonts.googleapis.com" rel="preconnect" />
+      <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+      />
+    </head>
+    <title>Book Trip</title>
+    <script defer src="/book-trip.js"></script>
   </head>
   <body>
-    <p>This is the trip booking page</p>
+    <nav>
+      <a href="/sign-out">Sign Out</a>
+      <a href="/profile">Profile</a>
+    </nav>
+    
+    <div class="image-container">
+      <form action="/api/book-trip" method="POST">
+        <label for="tripSelector">Select your trip: <select type="dropdown" name="tripSelector" id="tripSelector"></select></label>
+        <br>
+        <label for="bookingNumber">Booking Number: <input name="bookingNumber"></label>
+        <br>
+        <label for="travelerCountInput">Traveler Count: 
+          <select name="travelerCountInput" id="travelerCountInput">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <br>
+        <div id="tripTypes">Trip Type: </div>
+        <input type="submit" name="formSubmit" value="Submit">
+      </form>
+      </div>
   </body>
 </html>
