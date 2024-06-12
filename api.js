@@ -121,4 +121,42 @@ router.post("/sign-in", async (req, res) => {
   }
 });
 
+router.get("/book-trip-packages", async (req, res) => {
+  const data = await select("PackageId, PkgName", "packages");
+  res.status(200).json(data);
+});
+
+router.get("/book-trip-types", async (req, res) => {
+  const data = await select("*", "triptypes");
+  res.status(200).json(data);
+});
+
+router.post("/book-trip", async (req, res) => {
+  console.log(req.body);
+  const date = new Date();
+  const token = req.headers.cookie.split("token=")[1];
+  const decoded = jwt.verify(token, keys.primaryKey);
+  console.log(decoded);
+  const values = [
+    date,
+    req.body["bookingNumber"],
+    req.body["travelerCountInput"],
+    decoded.userid,
+    req.body["tripType"],
+    req.body["tripSelector"]
+  ];
+  console.log(values);
+  const sql =
+    "INSERT INTO `bookings` \
+    (`BookingId`, `BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`,  `TripTypeId`, `PackageId`) \
+    VALUES (null,?,?,?,?,?,?)";
+  connection.query(sql, values, (err, results) => {
+    if (err) {
+      throw err;
+    } else {
+      res.redirect("/profile");
+    }
+  });
+});
+
 module.exports = router;

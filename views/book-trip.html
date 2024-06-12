@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/profile.css" />
+      <link href="https://fonts.googleapis.com" rel="preconnect" />
+      <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+      />
+    </head>
+    <title>Book Trip</title>
+    <script defer src="/book-trip.js"></script>
   </head>
   <body>
-    <p>This is the trip booking page</p>
+    <nav>
+      <a href="/sign-out">Sign Out</a>
+      <a href="/profile">Profile</a>
+    </nav>
+    
+    <div class="image-container">
+      <form action="/api/book-trip" method="POST">
+        <label for="tripSelector">Select your trip: <select type="dropdown" name="tripSelector" id="tripSelector"></select></label>
+        <br>
+        <label for="bookingNumber">Booking Number: <input name="bookingNumber"></label>
+        <br>
+        <label for="travelerCountInput">Traveler Count: <input type="range" min="1" max="5" value="1" class="slider" id="travelerCountInput" name="travelerCountInput" oninput="travelerCountOutput.value = travelerCountInput.value">
+          <output id="travelerCountOutput">1</output></label>
+        <br>
+        <div id="tripTypes">Trip Type: </div>
+        <input type="submit" name="formSubmit" value="Submit">
+      </form>
+      </div>
   </body>
 </html>
