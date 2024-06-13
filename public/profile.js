@@ -12,7 +12,6 @@ const randomNum = function () {
 
 // RENDERS TRIPS IN PROFILE PAGES
 const renderTrips = function (data) {
-  console.log(data);
   name.textContent = `Hello ${data.name}`;
   // FILTERS CANCELLED TRIPS
   const cancelledTrips = data.trips.filter((trip) =>
@@ -38,10 +37,16 @@ const renderTrips = function (data) {
   const data1 = tripsFiltered.reduce((acc, cur, i) => {
     const lastIndex = acc.length - 1;
     if (acc[lastIndex] !== undefined) {
-      if (acc[lastIndex].TripStart !== cur.TripStart) {
+      if (
+        acc[lastIndex].TripStart !== cur.TripStart &&
+        acc[lastIndex].TripEnd !== cur.TripEnd
+      ) {
         acc.push(cur);
         return acc;
-      } else if (acc[lastIndex].TripStart === cur.TripStart) {
+      } else if (
+        acc[lastIndex].TripStart === cur.TripStart &&
+        acc[lastIndex].TripEnd === cur.TripEnd
+      ) {
         acc[lastIndex].BookingId += `, ${cur.BookingId}`;
         return acc;
       }
@@ -55,7 +60,6 @@ const renderTrips = function (data) {
     const startDate = new Date(trip.TripStart).toDateString();
     const endDate = new Date(trip.TripEnd).toDateString();
     const num = randomNum();
-    console.log(trip);
     trips.insertAdjacentHTML(
       "afterbegin",
       `

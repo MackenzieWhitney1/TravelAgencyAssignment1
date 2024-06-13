@@ -43,7 +43,6 @@ const insertOption = function (el, data, value) {
 };
 
 const renderData = function (data) {
-  console.log(data);
   // prettier-ignore
   data.packages.forEach((package) => insertOption(tripSelector, package.PkgName, package.PackageId));
   // prettier-ignore
@@ -63,6 +62,6 @@ const renderData = function (data) {
   );
 };
 
-fetch("/api/book-trip2")
+fetch("/api/book-trip")
   .then((res) => res.json())
   .then((data) => renderData(data));

@@ -11,39 +11,11 @@ const reformatDate = function (date) {
 
 // RENDERS TRIP
 const renderTrip = function (data) {
-  console.log(data);
-  const dataFiltered = data.filter((trip) => {
-    if (
-      trip.SupConBusPhone !== null &&
-      trip.SupConFirstName !== null &&
-      trip.SupConLastName !== null
-    ) {
-      return true;
-    } else return false;
-  });
+  const uniqueObjects = new Map(data.map((item) => [item.ProdName, item]));
+  const uniques = [...uniqueObjects.values()];
+  console.log(uniques);
 
-  const supplierContactsFiltered = dataFiltered.reduce((acc, cur, i) => {
-    const lastIndex = acc.length - 1;
-    if (acc[lastIndex] !== undefined) {
-      if (
-        acc[lastIndex].SupConFirstName !== cur.SupConFirstName &&
-        acc[lastIndex].SupConLastName !== cur.SupConLastName
-      ) {
-        acc.push(cur);
-        return acc;
-      } else if (
-        acc[lastIndex].SupConFirstName === cur.SupConFirstName &&
-        acc[lastIndex].SupConLastName === cur.SupConLastName
-      ) {
-        return acc;
-      }
-    } else if (i === 0) {
-      acc.push(cur);
-      return acc;
-    }
-  }, []);
-
-  const data1 = dataFiltered[0];
+  const data1 = uniques[0];
   const tripStart = reformatDate(data1.TripStart);
   const tripEnd = reformatDate(data1.TripEnd);
   const bookingDate = reformatDate(data1.BookingDate);
@@ -112,7 +84,7 @@ const renderTrip = function (data) {
   );
 
   const supplies = document.querySelector(`.trip-supplies`);
-  supplierContactsFiltered.forEach((trip, i) => {
+  uniques.forEach((trip, i) => {
     supplies.insertAdjacentHTML(
       `beforeend`,
       `

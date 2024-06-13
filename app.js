@@ -50,10 +50,6 @@ app.get("/profile/trip/:tripId&:img", (req, res) => {
 });
 
 app.get("/profile/book-trip", verifyToken, (req, res) => {
-  res.status(200).sendFile(__dirname + "/views/book-trip.html");
-});
-
-app.get("/profile/book-trip2", verifyToken, (req, res) => {
   res.status(200).sendFile(__dirname + "/views/book-trip2.html");
 });
 
