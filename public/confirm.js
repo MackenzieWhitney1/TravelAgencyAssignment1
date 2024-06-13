@@ -1,3 +1,4 @@
+// GAVIN
 const p = document.querySelector(`p`);
 let time = 5;
 

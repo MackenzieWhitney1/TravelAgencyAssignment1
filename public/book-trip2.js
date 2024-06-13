@@ -1,3 +1,4 @@
+// GAVIN & MACKENZIE
 const tripSelector = document.getElementById("tripSelector");
 const tripTypes = document.getElementById("tripTypes");
 const regionSelector = document.getElementById("regionSelector");

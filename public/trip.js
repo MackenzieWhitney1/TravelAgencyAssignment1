@@ -1,3 +1,4 @@
+// GAVIN
 // VARIABLES
 const url = window.location.href.split("=");
 const img = url[2];
@@ -82,6 +83,7 @@ const renderTrip = function (data) {
     `
   );
 
+  // REDNERS SUPPLIES
   const supplies = document.querySelector(`.trip-supplies`);
   uniques.forEach((trip, i) => {
     supplies.insertAdjacentHTML(

@@ -1,3 +1,4 @@
+// GAVIN
 // VARIABLES
 const form = document.querySelector(`form`);
 const submitButton = document.querySelector(`button`);

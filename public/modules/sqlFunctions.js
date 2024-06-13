@@ -1,3 +1,4 @@
+// GAVIN
 const mySql = require("mysql");
 const connection = mySql.createConnection({
   host: "localhost",
@@ -34,6 +35,7 @@ const insert = function (sql, values) {
   });
 };
 
+// GET PACKAGES FUNCTION
 const getPackages = function (where) {
   return new Promise((resolve, reject) => {
     let sql = `SELECT * FROM packages ${where ? "WHERE " + where : ""}`;

@@ -1,3 +1,4 @@
+// GAVIN
 // VARIABLES
 const trips = document.querySelector(`.trips-container`);
 const name = document.querySelector(`.name`);
@@ -23,21 +24,18 @@ const renderTrips = function (data) {
   );
 
   // FILTERS ALL RELATED CANCELLED TRIPS
-  let cancelFiltered;
-  if (cancelledTrips[0] === undefined) {
-    cancelFiltered = uniques;
-  } else {
-    cancelFiltered = uniques.filter((trip) => {
-      const val = cancelledTrips.some((canTrip) => {
-        return (
-          canTrip.TripStart !== trip.TripStart &&
-          canTrip.TripEnd !== trip.TripEnd
-        );
-      });
-      return val;
+  const cancelFiltered =
+    cancelledTrips[0] === undefined ? unique : cancelledTrips[0] === undefined;
+  cancelFiltered = uniques.filter((trip) => {
+    const val = cancelledTrips.some((canTrip) => {
+      return (
+        canTrip.TripStart !== trip.TripStart && canTrip.TripEnd !== trip.TripEnd
+      );
     });
-  }
+    return val;
+  });
 
+  // REMOVE ALL TRIPS WITH SAME START DATE AND END DATE INTO ONE TRIP AND ADDS IT'S BOOKING ID TO SINGLE TRIP
   const data1 = cancelFiltered.reduce((acc, cur) => {
     const lastIndex = acc.length - 1;
     if (
@@ -58,8 +56,7 @@ const renderTrips = function (data) {
     return acc;
   }, []);
 
-  console.log(data1);
-
+  // RENDERS TRIPS
   data1.forEach((trip) => {
     const startDate = new Date(trip.TripStart).toDateString();
     const endDate = new Date(trip.TripEnd).toDateString();
