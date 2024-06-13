@@ -50,6 +50,10 @@ app.get("/profile/book-trip", verifyToken, (req, res) => {
   res.status(200).sendFile(__dirname + "/views/book-trip.html");
 });
 
+app.get("/profile/book-trip2", verifyToken, (req, res) => {
+  res.status(200).sendFile(__dirname + "/views/book-trip2.html");
+});
+
 app.get("/sign-in", (req, res) => {
   res.status(200).sendFile(__dirname + "/views/sign-in.html");
 });

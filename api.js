@@ -243,99 +243,99 @@ async function insertBookingDetails(req, bookingIdInserted) {
 module.exports = router;
 
 // UNCOMMENT BELOW THIS LINE YOULL HAVE TO COMMENT YOU STUFF OUT TO GET THIS TO WORK RIGHT
-// const insert = function (sql, values) {
-//   return new Promise((resolve, reject) => {
-//     connection.query(sql, values, (err, response) => {
-//       if (err) reject(err);
-//       resolve(response);
-//     });
-//   });
-// };
+const insert = function (sql, values) {
+  return new Promise((resolve, reject) => {
+    connection.query(sql, values, (err, response) => {
+      if (err) reject(err);
+      resolve(response);
+    });
+  });
+};
 
-// router.get("/book-trip", async (req, res) => {
-//   const packages = await select("*", "packages");
-//   const tripTypes = await select("*", "triptypes");
-//   const regions = await select("*", "regions");
-//   const classes = await select("*", "classes");
-//   const products = await select("*", "products");
-//   res.status(200).json({ packages, tripTypes, regions, classes, products });
-// });
+router.get("/book-trip2", async (req, res) => {
+  const packages = await select("*", "packages");
+  const tripTypes = await select("*", "triptypes");
+  const regions = await select("*", "regions");
+  const classes = await select("*", "classes");
+  const products = await select("*", "products");
+  res.status(200).json({ packages, tripTypes, regions, classes, products });
+});
 
-// router.post("/book-trip", async (req, res) => {
-//   console.log(req.body);
-//   const data = req.body;
-//   const date = new Date();
-//   const [...product] = data.productId;
-//   const token = req.headers.cookie.split("token=")[1];
-//   const decoded = jwt.verify(token, keys.primaryKey);
-//   console.log(data);
-//   const bookingValues = [
-//     date,
-//     data.bookingNumber,
-//     data.travelerCountInput,
-//     decoded.userid,
-//     data.tripTypes,
-//     data.tripSelector,
-//   ];
+router.post("/book-trip2", async (req, res) => {
+  console.log(req.body);
+  const data = req.body;
+  const date = new Date();
+  const [...product] = data.productId;
+  const token = req.headers.cookie.split("token=")[1];
+  const decoded = jwt.verify(token, keys.primaryKey);
+  console.log(data);
+  const bookingValues = [
+    date,
+    data.bookingNumber,
+    data.travelerCountInput,
+    decoded.userid,
+    data.tripTypes,
+    data.tripSelector,
+  ];
 
-//   const sqlBooking =
-//     "INSERT INTO `bookings` (`BookingId`, `BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`,  `TripTypeId`, `PackageId`) \
-//     VALUES (null,?,?,?,?,?,?);";
+  const sqlBooking =
+    "INSERT INTO `bookings` (`BookingId`, `BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`,  `TripTypeId`, `PackageId`) \
+    VALUES (null,?,?,?,?,?,?);";
 
-//   const bookingId = await insert(sqlBooking, bookingValues).then(
-//     async (res) => {
-//       const bookingId = await select(
-//         "*",
-//         "bookings",
-//         `CustomerId=${decoded.userid} ORDER BY BookingDate DESC LIMIT 1`
-//       );
-//       return bookingId[0].BookingId;
-//     }
-//   );
+  const bookingId = await insert(sqlBooking, bookingValues).then(
+    async (res) => {
+      const bookingId = await select(
+        "*",
+        "bookings",
+        `CustomerId=${decoded.userid} ORDER BY BookingDate DESC LIMIT 1`
+      );
+      return bookingId[0].BookingId;
+    }
+  );
 
-//   const package = await select(
-//     `*`,
-//     "packages",
-//     `packages.PackageId=${data.tripSelector}`
-//   );
+  const package = await select(
+    `*`,
+    "packages",
+    `packages.PackageId=${data.tripSelector}`
+  );
 
-//   // For each product, add productID + SupplierId to products_suppliers table. Select ProductSupplierID using DESC, add it to booking details table
-//   product.forEach(async (product) => {
-//     const productSupplier = {
-//       1: 5492,
-//       2: 6873,
-//       3: 9396,
-//       4: 1005,
-//       5: 5228,
-//       6: 1620,
-//       7: 828,
-//       8: 5777,
-//       9: 2998,
-//       10: 2386,
-//     };
-//     const queriedProductId = await select(
-//       "ProductSupplierId",
-//       "products_suppliers",
-//       `SupplierId=${productSupplier[product]}`
-//     );
+  // For each product, add productID + SupplierId to products_suppliers table. Select ProductSupplierID using DESC, add it to booking details table
+  product.forEach(async (product) => {
+    const productSupplier = {
+      1: 5492,
+      2: 6873,
+      3: 9396,
+      4: 1005,
+      5: 5228,
+      6: 1620,
+      7: 828,
+      8: 5777,
+      9: 2998,
+      10: 2386,
+    };
+    const queriedProductId = await select(
+      "ProductSupplierId",
+      "products_suppliers",
+      `SupplierId=${productSupplier[product]}`
+    );
 
-//     const sqlBookingDetailsValues = [
-//       data.itineraryNo,
-//       data.tripStart,
-//       data.tripEnd,
-//       data.description,
-//       data.destination,
-//       package[0].PkgBasePrice,
-//       package[0].PkgAgencyCommission,
-//       bookingId,
-//       data.regionSelector,
-//       data.classSelector,
-//       "BK",
-//       queriedProductId[0].ProductSupplierId,
-//     ];
-//     const sqlBookingDetails =
-//       "INSERT INTO bookingdetails (`BookingDetailId`,	`ItineraryNo`,	`TripStart`,	`TripEnd`,	`Description`,	`Destination`, `BasePrice`,	`AgencyCommission`, `BookingId`, `RegionId`, `ClassId`, `FeeId`, `ProductSupplierId`) VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?);";
-//     insert(sqlBookingDetails, sqlBookingDetailsValues);
-//   });
-//   res.status(200).redirect("/profile");
-// });
+    const sqlBookingDetailsValues = [
+      data.itineraryNo,
+      data.tripStart,
+      data.tripEnd,
+      data.description,
+      data.destination,
+      package[0].PkgBasePrice,
+      package[0].PkgAgencyCommission,
+      bookingId,
+      data.regionSelector,
+      data.classSelector,
+      "BK",
+      queriedProductId[0].ProductSupplierId,
+    ];
+    const sqlBookingDetails =
+      "INSERT INTO bookingdetails (`BookingDetailId`,	`ItineraryNo`,	`TripStart`,	`TripEnd`,	`Description`,	`Destination`, `BasePrice`,	`AgencyCommission`, `BookingId`, `RegionId`, `ClassId`, `FeeId`, `ProductSupplierId`) VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?);";
+    insert(sqlBookingDetails, sqlBookingDetailsValues);
+  });
+  res.status(200).redirect("/profile");
+});
