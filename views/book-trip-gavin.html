@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <head>
+      <!-- Author: Mackenzie Whitney -->
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="/profile.css" />
+      <link href="https://fonts.googleapis.com" rel="preconnect" />
+      <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Radio+Canada+Big:ital,wght@0,400..700;1,400..700&display=swap"
+        rel="stylesheet"
+      />
+    </head>
+    
+    <title>Book Trip</title>
+    <script defer src="/book-trip.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/sign-out">Sign Out</a>
+      <a href="/profile">Profile</a>
+    </nav>
+      <form action="/api/book-trip" method="POST">
+        <label for="tripSelector">Select your trip: </label>
+        <select type="dropdown" name="tripSelector" id="tripSelector"></select>
+        <!-- <br> -->
+        <label for="bookingNumber">Booking Number: </label>
+        <input name="bookingNumber"></input>
+        <!-- <br> -->
+        <label for="travelerCountInput">Traveler Count: </label>
+        <select name="travelerCountInput" id="travelerCountInput">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <!-- <br> -->
+        <!-- <div id="tripTypes">Trip Type: </div> -->
+         <label for="tripTypes">Trip type:</label>
+         <select name="tripTypes" id="tripTypes"></select>
+        <!-- <br> -->
+        <label for="itineraryNo">Itinerary Number:  </label>
+        <input name="itineraryNo" type="number" min="1"></input>
+        <!-- <br> -->
+        <label for="tripStart">Trip Start: </label>
+        <input name="tripStart" type="date"></input>
+        <label for="tripEnd">Trip End: </label>
+        <input name="tripEnd" type="date"></input>
+        <!-- <br> -->
+        <label for="description">Description: </label>
+        <input name="description"></input>
+        <!-- <br> -->
+        <label for="destination">Destination: </label>
+        <input name="destination"></input>
+        <label for="regionSelector">Region: </label>
+        <select type="dropdown" name="regionSelector" id="regionSelector"></select>
+        <!-- <br> -->
+        <label for="classSelector">Class: </label>
+        <select type="dropdown" name="classSelector" id="classSelector"></select>
+        <!-- <br> -->
+         <label for="prodctId">Supply</label>
+         <select class="supply productId" name="productId" id="productId">
+         </select>
+         
+         <div><button class="addSupply">+1</button><button class="removeSupply">-1</button></div>
+         
+        <input type="submit" name="formSubmit" value="Submit">
+      </form>
+      <style>
+      form {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        margin: 4rem 0;
+        background-color: #fbfbfb;
+        padding: 2rem;
+        border-radius: 8px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      select, input {
+        width: 60vw;
+        height: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      form div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+      button {
+        width: 4rem;
+      }
+    </style>
+  </body>
+</html>

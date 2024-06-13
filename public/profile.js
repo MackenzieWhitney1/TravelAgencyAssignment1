@@ -12,6 +12,7 @@ const randomNum = function () {
 
 // RENDERS TRIPS IN PROFILE PAGES
 const renderTrips = function (data) {
+  console.log(data);
   name.textContent = `Hello ${data.name}`;
   // FILTERS CANCELLED TRIPS
   const cancelledTrips = data.trips.filter((trip) =>
