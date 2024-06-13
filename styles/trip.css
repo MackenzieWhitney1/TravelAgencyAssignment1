@@ -154,6 +154,12 @@ body {
   font-size: 24px;
   letter-spacing: 2px;
 }
+.details-container {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
 .trip-supplies {
   display: flex;
@@ -401,5 +407,21 @@ a:focus::after {
   .fees,
   .contact {
     padding: 20rem 30rem;
+  }
+  .trip-supplies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .trip-supply-container {
+    width: 25rem;
+    flex-shrink: 0;
+  }
+  .fee-container {
+    align-self: center;
+  }
+  .card {
+    width: 25rem;
+    align-self: center;
   }
 }

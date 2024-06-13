@@ -15,7 +15,11 @@ const verifyToken = function (req, res, next) {
   try {
     const decoded = jwt.verify(token, keys.primaryKey);
     req.username = decoded.username;
-    if (req.url === "/profile" || req.url === "/profile/book-trip") {
+    if (
+      req.url === "/profile" ||
+      req.url === "/profile/book-trip" ||
+      req.url === "/profile/book-trip2"
+    ) {
       next();
     } else {
       decoded.isAdmin ? next() : res.status(401).redirect("/sign-in");

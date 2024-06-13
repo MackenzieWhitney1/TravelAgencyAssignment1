@@ -53,8 +53,18 @@
         <select type="dropdown" name="classSelector" id="classSelector"></select>
          <label for="prodctId">Supply</label>
          <select class="supply productId" name="productId" id="productId">
-         </select>
+         </select> 
          <div><button class="addSupply">+1</button><button class="removeSupply">-1</button></div>
+         <fieldset>
+          <legend>Credit Card Info:</legend>
+          <label for="CCNumber">Credit Card Number</label>
+          <input type="text" name="CCNumber" id="CCNumber">
+          <label for="CCExpiry">Credit Card Expiry:</label>
+          <input type="date" name="CCExpiry" id="CCExpiry">
+          <label for="CCName">Credi Card Type:</label>
+          <input type="text" name="CCName" id="CCName">
+         </fieldset>
+        
         <button type="submit">Submit</button>
       </form>
       <style>
@@ -72,7 +82,7 @@
         flex-direction: column;
       }
       select, input {
-        width: 60vw;
+        width: auto;
         height: 1.5rem;
         margin-bottom: 1rem;
       }
@@ -105,8 +115,14 @@
          background-color: #937261;
        }
 
+       fieldset {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+       }
+
       @media (min-width: 1024px) {
-        select, input {
+        form {
           width: 30vw;
         }
       }

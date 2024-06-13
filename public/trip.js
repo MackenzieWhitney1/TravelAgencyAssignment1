@@ -11,6 +11,7 @@ const reformatDate = function (date) {
 
 // RENDERS TRIP
 const renderTrip = function (data) {
+  console.log(data);
   const dataFiltered = data.filter((trip) => {
     if (
       trip.SupConBusPhone !== null &&
@@ -69,10 +70,12 @@ const renderTrip = function (data) {
       </section>
       <section class="dates">
         <h1>Travel Details</h1>
+        <div class="details-container">
         <p><ion-icon name="airplane"></ion-icon>Departure: ${tripStart}</p>
         <p><ion-icon name="airplane"></ion-icon>Return: ${tripEnd}</p>
         <p><ion-icon name="calendar"></ion-icon>Booked on: ${bookingDate}</p>
         <p><ion-icon name="briefcase"></ion-icon>Class: ${data1.TTName}</p>
+        </div>
       </section>
       <section class="details">
         <h1>Supply Details</h1>

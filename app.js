@@ -19,14 +19,17 @@ const port = 8000;
 
 // GET REQUESTS FOR FILES
 app.get(["/", "/home"], (req, res) => {
+  res.clearCookie("token");
   res.status(200).sendFile(__dirname + "/views/home.html");
 });
 
 app.get("/contact", (req, res) => {
+  res.clearCookie("token");
   res.status(200).sendFile(__dirname + "/views/contact.html");
 });
 
 app.get("/register", (req, res) => {
+  res.clearCookie("token");
   res.status(200).sendFile(__dirname + "/views/register.html");
 });
 
