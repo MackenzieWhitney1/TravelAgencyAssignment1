@@ -13,7 +13,6 @@ const reformatDate = function (date) {
 const renderTrip = function (data) {
   const uniqueObjects = new Map(data.map((item) => [item.ProdName, item]));
   const uniques = [...uniqueObjects.values()];
-  console.log(uniques);
 
   const data1 = uniques[0];
   const tripStart = reformatDate(data1.TripStart);

@@ -12,6 +12,10 @@ const randomNum = function () {
 
 // RENDERS TRIPS IN PROFILE PAGES
 const renderTrips = function (data) {
+  const uniqueObjects = new Map(
+    data.trips.map((item) => [item.BookingId, item])
+  );
+  const uniques = [...uniqueObjects.values()];
   name.textContent = `Hello ${data.name}`;
   // FILTERS CANCELLED TRIPS
   const cancelledTrips = data.trips.filter((trip) =>
@@ -19,42 +23,42 @@ const renderTrips = function (data) {
   );
 
   // FILTERS ALL RELATED CANCELLED TRIPS
-  const tripsFiltered =
-    cancelledTrips[0] === undefined
-      ? data.trips
-      : data.trips.filter((trip) => {
-          for (let i = 0; i < cancelledTrips.length; i++) {
-            if (
-              trip !== cancelledTrips[i] &&
-              trip.TripStart !== cancelledTrips[i].TripStart &&
-              trip.TripEnd !== cancelledTrips[i].TripEnd
-            ) {
-              return trip;
-            }
-          }
-        });
+  let cancelFiltered;
+  if (cancelledTrips[0] === undefined) {
+    cancelFiltered = uniques;
+  } else {
+    cancelFiltered = uniques.filter((trip) => {
+      const val = cancelledTrips.some((canTrip) => {
+        return (
+          canTrip.TripStart !== trip.TripStart &&
+          canTrip.TripEnd !== trip.TripEnd
+        );
+      });
+      return val;
+    });
+  }
 
-  const data1 = tripsFiltered.reduce((acc, cur, i) => {
+  const data1 = cancelFiltered.reduce((acc, cur) => {
     const lastIndex = acc.length - 1;
-    if (acc[lastIndex] !== undefined) {
-      if (
-        acc[lastIndex].TripStart !== cur.TripStart &&
-        acc[lastIndex].TripEnd !== cur.TripEnd
-      ) {
-        acc.push(cur);
-        return acc;
-      } else if (
-        acc[lastIndex].TripStart === cur.TripStart &&
-        acc[lastIndex].TripEnd === cur.TripEnd
-      ) {
-        acc[lastIndex].BookingId += `, ${cur.BookingId}`;
-        return acc;
-      }
-    } else if (i === 0) {
+    if (
+      lastIndex >= 0 &&
+      acc[lastIndex].TripStart !== cur.TripStart &&
+      acc[lastIndex].TripEnd !== cur.TripEnd
+    ) {
       acc.push(cur);
-      return acc;
+    } else if (
+      lastIndex >= 0 &&
+      acc[lastIndex].TripStart === cur.TripStart &&
+      acc[lastIndex].TripEnd === cur.TripEnd
+    ) {
+      acc[lastIndex].BookingId += `, ${cur.BookingId}`;
+    } else if (lastIndex === -1) {
+      acc.push(cur);
     }
+    return acc;
   }, []);
+
+  console.log(data1);
 
   data1.forEach((trip) => {
     const startDate = new Date(trip.TripStart).toDateString();

@@ -5,7 +5,11 @@ const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const app = express();
-const select = require("./public/modules/sqlFunctions.js");
+const {
+  select,
+  insert,
+  getPackages,
+} = require("./public/modules/sqlFunctions.js");
 const connection = require("./public/modules/connection.js");
 const keyFile = fs.readFileSync("./jsonToken/privateKey.json", "utf8");
 const keys = JSON.parse(keyFile);
@@ -16,13 +20,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // SENDS PACKAGES
 router.get("/admin", async (req, res) => {
-  const data = await select("*", "packages");
+  const data = await getPackages();
   res.status(200).json(data);
 });
 
 // SENDS PACKAGES
 router.get("/home", async (req, res) => {
-  const data = await select("*", "packages");
+  const data = await getPackages();
   res.status(200).json(data);
 });
 
@@ -72,6 +76,7 @@ router.post("/trip", async (req, res) => {
       ? [...req.body.tripId]
       : req.body.tripId;
 
+  // FILTERS OUT DUPLICATE TRIP IDS
   const filteredTrips = tripId.reduce((acc, cur, i) => {
     if (!acc.includes(cur)) {
       acc.push(cur);
@@ -79,14 +84,15 @@ router.post("/trip", async (req, res) => {
     return acc;
   }, []);
 
+  // TURNS TRIPS ID'S INTO SQL
   const whereClause =
     typeof req.body.tripId === "string"
       ? `bookings.BookingId=${req.body.tripId}`
       : filteredTrips.reduce((acc, cur, i) => {
           return (acc +=
             i === req.body.tripId.length - 1
-              ? `bookings.BookingId=${cur} OR`
-              : `bookings.BookingId=${cur}`);
+              ? `bookings.BookingId=${cur}`
+              : `bookings.BookingId=${cur} OR `);
         }, "");
 
   const sql =
@@ -94,7 +100,6 @@ router.post("/trip", async (req, res) => {
     whereClause;
 
   connection.query(sql, (err, result) => {
-    console.log(result);
     res.status(200).json(result);
   });
 });
@@ -255,18 +260,9 @@ router.post("/sign-in", async (req, res) => {
 
 module.exports = router;
 
-// UNCOMMENT BELOW THIS LINE YOULL HAVE TO COMMENT YOU STUFF OUT TO GET THIS TO WORK RIGHT
-const insert = function (sql, values) {
-  return new Promise((resolve, reject) => {
-    connection.query(sql, values, (err, response) => {
-      if (err) reject(err);
-      resolve(response);
-    });
-  });
-};
-
+//  RETURNS DATA TO BOOK-TRIP PAGE
 router.get("/book-trip", async (req, res) => {
-  const packages = await select("*", "packages");
+  const packages = await getPackages();
   const tripTypes = await select("*", "triptypes");
   const regions = await select("*", "regions");
   const classes = await select("*", "classes");
@@ -293,6 +289,7 @@ router.post("/book-trip", async (req, res) => {
     "INSERT INTO `bookings` (`BookingId`, `BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`,  `TripTypeId`, `PackageId`) \
     VALUES (null,?,?,?,?,?,?);";
 
+  // INSERTS THE BOOKING INTO `bookings` AND THEN SELECTS THE BOOKING ID AFTERINSERTING
   const bookingId = await insert(sqlBooking, bookingValues).then(
     async (res) => {
       const bookingId = await select(
@@ -304,18 +301,14 @@ router.post("/book-trip", async (req, res) => {
     }
   );
 
-  const package = await select(
-    `*`,
-    "packages",
-    `packages.PackageId=${data.tripSelector}`
-  );
+  const package = await getPackages(`packages.PackageId=${data.tripSelector}`);
 
   const sqlCC =
     "INSERT INTO creditcards (CreditCardId, CCName, CCNumber, CCExpiry, CustomerId) VALUES (null,?,?,?,?)";
   const ccValues = [data.CCName, data.CCNumber, data.CCExpiry, decoded.userid];
   insert(sqlCC, ccValues);
 
-  // For each product, add productID + SupplierId to products_suppliers table. Select ProductSupplierID using DESC, add it to booking details table
+  // FOR EACH PRODUCT, INSERTS INTO BOOKINGDETAILS
   product.forEach(async (product) => {
     const productSupplier = {
       1: 5492,
@@ -329,11 +322,14 @@ router.post("/book-trip", async (req, res) => {
       9: 2998,
       10: 2386,
     };
+
     const queriedProductId = await select(
       "ProductSupplierId",
       "products_suppliers",
       `SupplierId=${productSupplier[product]}`
     );
+
+    console.log(queriedProductId);
 
     const sqlBookingDetailsValues = [
       data.itineraryNo,

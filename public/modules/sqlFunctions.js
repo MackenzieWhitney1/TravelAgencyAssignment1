@@ -24,4 +24,24 @@ const select = function (attribute, table, options) {
   });
 };
 
-module.exports = select;
+// INSERT FUNCTION, RETURNS INSERT QUERY
+const insert = function (sql, values) {
+  return new Promise((resolve, reject) => {
+    connection.query(sql, values, (err, response) => {
+      if (err) reject(err);
+      resolve(response);
+    });
+  });
+};
+
+const getPackages = function (where) {
+  return new Promise((resolve, reject) => {
+    let sql = `SELECT * FROM packages ${where ? "WHERE " + where : ""}`;
+    connection.query(sql, (err, response) => {
+      if (err) reject(err);
+      resolve(response);
+    });
+  });
+};
+
+module.exports = { select, insert, getPackages };

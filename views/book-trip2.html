@@ -38,15 +38,15 @@
          <label for="tripTypes">Trip type:</label>
          <select name="tripTypes" id="tripTypes"></select>
         <label for="itineraryNo">Itinerary Number:  </label>
-        <input name="itineraryNo" type="number" min="1"></input>
+        <input required name="itineraryNo" type="number" min="1"></input>
         <label for="tripStart">Trip Start: </label>
-        <input name="tripStart" type="date"></input>
+        <input required name="tripStart" type="date"></input>
         <label for="tripEnd">Trip End: </label>
-        <input name="tripEnd" type="date"></input>
+        <input required name="tripEnd" type="date"></input>
         <label for="description">Description: </label>
-        <input name="description"></input>
+        <input required name="description"></input>
         <label for="destination">Destination: </label>
-        <input name="destination"></input>
+        <input required name="destination"></input>
         <label for="regionSelector">Region: </label>
         <select type="dropdown" name="regionSelector" id="regionSelector"></select>
         <label for="classSelector">Class: </label>
@@ -58,11 +58,11 @@
          <fieldset>
           <legend>Credit Card Info:</legend>
           <label for="CCNumber">Credit Card Number</label>
-          <input type="text" name="CCNumber" id="CCNumber">
+          <input required type="text" name="CCNumber" id="CCNumber">
           <label for="CCExpiry">Credit Card Expiry:</label>
-          <input type="date" name="CCExpiry" id="CCExpiry">
+          <input required type="date" name="CCExpiry" id="CCExpiry">
           <label for="CCName">Credi Card Type:</label>
-          <input type="text" name="CCName" id="CCName">
+          <input required type="text" name="CCName" id="CCName">
          </fieldset>
         
         <button type="submit">Submit</button>
