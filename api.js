@@ -177,68 +177,69 @@ router.get("/book-trip-classes", async (req, res) => {
 
 // creates a booking in the table. uses user cookie
 router.post("/book-trip", async (req, res) => {
-  console.log(req.body);
-  const date = new Date();
-  const token = req.headers.cookie.split("token=")[1];
-  const decoded = jwt.verify(token, keys.primaryKey);
-  const bookingValues = [
-    date,
-    req.body["bookingNumber"],
-    req.body["travelerCountInput"],
-    decoded.userid,
-    req.body["tripType"],
-    req.body["tripSelector"],
-  ];
-  // console.log(bookingValues);
-
-  // initialize bookingIdInserted and bookingDetailsValues.
-  // if we don't add this the Insert query isn't run before these are defined and it has to be this order.
-  let bookingIdInserted = 0;
-  let bookingDetailsValues = [];
-  const bookingsSql =
-    "INSERT INTO `bookings` \
-    (`BookingId`, `BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`,  `TripTypeId`, `PackageId`) \
-    VALUES (null,?,?,?,?,?,?);";
-  connection.query(bookingsSql, bookingValues, (err, results) => {
-    if (err) {
-      throw err;
-    } else {
-      bookingIdInserted = results.insertId;
-      bookingDetailsValues = [
-        req.body["itineraryNo"],
-        req.body["tripStart"],
-        req.body["tripEnd"],
-        req.body["description"],
-        req.body["destination"],
-        3000, // dummy value Base Price would otherwise come from Packages
-        30, // dummy value AgencyCommission should not be defined by user
-        bookingIdInserted,
-        req.body["regionSelector"],
-        req.body["classSelector"],
-        "BK", // dummy value. FeeIds shouldn't be decided by users
-        1, // dummy value. ProductSupplierId shouldn't be decided by users
-      ];
-      // console.log(bookingDetailsValues);
-      const bookingDetailsSql =
-        "INSERT INTO `bookingdetails` \
-      (`BookingDetailId`,	`ItineraryNo`,	`TripStart`,	`TripEnd`,	`Description`,	`Destination`, `BasePrice`,	`AgencyCommission`, \
-      `BookingId`, `RegionId`, `ClassId`, `FeeId`, `ProductSupplierId`) \
-      VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-      connection.query(
-        bookingDetailsSql,
-        bookingDetailsValues,
-        (err, results) => {
-          if (err) {
-            throw err;
-          } else {
-            console.log("successful");
-            res.redirect("/profile");
-          }
-        }
-      );
-    }
-  });
+  const bookingIdInserted = await insertBooking(req);
+  insertBookingDetails(req, bookingIdInserted);
+  res.redirect("/profile");
 });
+
+async function insertBooking(req) {
+  return new Promise((resolve, reject) => {
+    const date = new Date();
+    const token = req.headers.cookie.split("token=")[1];
+    const decoded = jwt.verify(token, keys.primaryKey);
+    const bookingValues = [
+      date,
+      req.body["bookingNumber"],
+      req.body["travelerCountInput"],
+      decoded.userid,
+      req.body["tripType"],
+      req.body["tripSelector"],
+    ];
+    const bookingsSql =
+      "INSERT INTO `bookings` \
+      (`BookingId`, `BookingDate`, `BookingNo`, `TravelerCount`, `CustomerId`,  `TripTypeId`, `PackageId`) \
+      VALUES (null,?,?,?,?,?,?);";
+
+    connection.query(bookingsSql, bookingValues, (err, results) => {
+      if (err) return reject(err);
+      resolve(results.insertId);
+    });
+  });
+}
+
+async function insertBookingDetails(req, bookingIdInserted) {
+  return new Promise((resolve, reject) => {
+    bookingDetailsValues = [
+      req.body["itineraryNo"],
+      req.body["tripStart"],
+      req.body["tripEnd"],
+      req.body["description"],
+      req.body["destination"],
+      3000, // dummy value Base Price would otherwise come from Packages
+      30, // dummy value AgencyCommission should not be defined by user
+      bookingIdInserted,
+      req.body["regionSelector"],
+      req.body["classSelector"],
+      "BK", // dummy value. FeeIds shouldn't be decided by users
+      1, // dummy value. ProductSupplierId shouldn't be decided by users
+    ];
+    // console.log(bookingDetailsValues);
+    const bookingDetailsSql =
+      "INSERT INTO `bookingdetails` \
+    (`BookingDetailId`,	`ItineraryNo`,	`TripStart`,	`TripEnd`,	`Description`,	`Destination`, `BasePrice`,	`AgencyCommission`, \
+    `BookingId`, `RegionId`, `ClassId`, `FeeId`, `ProductSupplierId`) \
+    VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    connection.query(
+      bookingDetailsSql,
+      bookingDetailsValues,
+      (err, results) => {
+        if (err) throw reject(err);
+        resolve(console.log("successful"));
+      }
+    );
+  });
+}
+
 module.exports = router;
 
 // UNCOMMENT BELOW THIS LINE YOULL HAVE TO COMMENT YOU STUFF OUT TO GET THIS TO WORK RIGHT
