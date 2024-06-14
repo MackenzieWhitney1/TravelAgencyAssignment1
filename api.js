@@ -196,12 +196,7 @@ router.post("/book-trip", async (req, res) => {
   // INSERTS THE BOOKING INTO `bookings` AND THEN SELECTS THE BOOKING ID AFTERINSERTING
   const bookingId = await insert(sqlBooking, bookingValues).then(
     async (res) => {
-      const bookingId = await select(
-        "*",
-        "bookings",
-        `CustomerId=${decoded.userid} ORDER BY BookingDate DESC LIMIT 1`
-      );
-      return bookingId[0].BookingId;
+      return res.insertId;
     }
   );
 
