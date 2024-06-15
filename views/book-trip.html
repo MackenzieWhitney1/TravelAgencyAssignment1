@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <head>
-      <!-- Author: Mackenzie Whitney -->
+      <!-- Author: Mackenzie Whitney && Gavin-->
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="/profile.css" />
@@ -13,46 +13,119 @@
         rel="stylesheet"
       />
     </head>
+    
     <title>Book Trip</title>
-    <script defer src="/book-trip.js"></script>
+    <script defer src="/book-trip2.js"></script>
   </head>
   <body>
     <nav>
       <a href="/sign-out">Sign Out</a>
       <a href="/profile">Profile</a>
     </nav>
-    
-    <div class="image-container">
       <form action="/api/book-trip" method="POST">
-        <label for="tripSelector">Select your trip: <select type="dropdown" name="tripSelector" id="tripSelector"></select></label>
-        <br>
-        <label for="bookingNumber">Booking Number: <input name="bookingNumber"></input></label>
-        <br>
-        <label for="travelerCountInput">Traveler Count: 
-          <select name="travelerCountInput" id="travelerCountInput">
+        <label for="tripSelector">Select your trip: </label>
+        <select type="dropdown" name="tripSelector" id="tripSelector"></select>
+        <label for="bookingNumber">Booking Number: </label>
+        <input name="bookingNumber"></input>
+        <label for="travelerCountInput">Traveler Count: </label>
+        <select name="travelerCountInput" id="travelerCountInput">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
           <option value="5">5</option>
         </select>
-        <br>
-        <div id="tripTypes">Trip Type: </div>
-        <br>
-        <label for="itineraryNo">Itinerary Number:  <input name="itineraryNo" type="number" min="1"></input></label>
-        <br>
-        <label for="tripStart">Trip Start: <input name="tripStart" type="date"></input></label>
-        <label for="tripEnd">Trip End: <input name="tripEnd" type="date"></input></label>
-        <br>
-        <label for="description">Description: <input name="description"></input></label>
-        <br>
-        <label for="destination">Destination: <input name="destination"></input></label>
-        <label for="regionSelector">Region: <select type="dropdown" name="regionSelector" id="regionSelector"></select></label>
-        <br>
-        <label for="classSelector">Class: <select type="dropdown" name="classSelector" id="classSelector"></select></label>
-        <br>
-        <input type="submit" name="formSubmit" value="Submit">
+         <label for="tripTypes">Trip type:</label>
+         <select name="tripTypes" id="tripTypes"></select>
+        <label for="itineraryNo">Itinerary Number:  </label>
+        <input required name="itineraryNo" type="number" min="1"></input>
+        <label for="tripStart">Trip Start: </label>
+        <input required name="tripStart" type="date"></input>
+        <label for="tripEnd">Trip End: </label>
+        <input required name="tripEnd" type="date"></input>
+        <label for="description">Description: </label>
+        <input required name="description"></input>
+        <label for="destination">Destination: </label>
+        <input required name="destination"></input>
+        <label for="regionSelector">Region: </label>
+        <select type="dropdown" name="regionSelector" id="regionSelector"></select>
+        <label for="classSelector">Class: </label>
+        <select type="dropdown" name="classSelector" id="classSelector"></select>
+         <label for="prodctId">Supply</label>
+         <select class="supply productId" name="productId" id="productId">
+         </select> 
+         <div><button class="addSupply">+1</button><button class="removeSupply">-1</button></div>
+         <fieldset>
+          <legend>Credit Card Info:</legend>
+          <label for="CCNumber">Credit Card Number</label>
+          <input required type="text" name="CCNumber" id="CCNumber">
+          <label for="CCExpiry">Credit Card Expiry:</label>
+          <input required type="date" name="CCExpiry" id="CCExpiry">
+          <label for="CCName">Credi Card Type:</label>
+          <input required type="text" name="CCName" id="CCName">
+         </fieldset>
+        
+        <button type="submit">Submit</button>
       </form>
-      </div>
+      <style>
+      form {
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        margin: 4rem 0;
+        background-color: #fbfbfb;
+        padding: 2rem;
+        border-radius: 8px;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      select, input {
+        width: auto;
+        height: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+      }
+
+      form div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+      button {
+        text-transform: uppercase;
+        align-self: flex-start;
+        border-radius: 0;
+        border: 0;
+        padding: 4px 16px;
+        background-color: #44474a;
+        color: white;
+        border-radius: 9999px;
+        transition: all 200ms;
+      }
+
+       button:hover {
+         cursor: pointer;
+         background-color: #937261;
+       }
+
+       fieldset {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+       }
+
+      @media (min-width: 1024px) {
+        form {
+          width: 30vw;
+        }
+      }
+    </style>
   </body>
 </html>

@@ -24,7 +24,7 @@ const renderTrips = function (data) {
   );
 
   // FILTERS ALL RELATED CANCELLED TRIPS
-  const cancelFiltered =
+  let cancelFiltered =
     cancelledTrips[0] === undefined ? unique : cancelledTrips[0] === undefined;
   cancelFiltered = uniques.filter((trip) => {
     const val = cancelledTrips.some((canTrip) => {
