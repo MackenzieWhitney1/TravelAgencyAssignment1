@@ -10,6 +10,7 @@ const {
   insert,
   getPackages,
 } = require("./public/modules/sqlFunctions.js");
+
 const connection = require("./public/modules/connection.js");
 const keyFile = fs.readFileSync("./jsonToken/privateKey.json", "utf8");
 const keys = JSON.parse(keyFile);

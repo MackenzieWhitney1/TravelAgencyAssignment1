@@ -1,30 +1,31 @@
 //author: Erin Bough
+
 const date = new Date();
-fetch("api/home", { method: "GET" })
+fetch("/api/home", { method: "GET" })
   .then((res) => res.json())
   .then((data) => displayPackages(data));
 
 //takes package information from pre-defined arrays and displays it in a table
 function displayPackages(data) {
-
-  function isLaterThan(subject,comparison){
+  function isLaterThan(subject, comparison) {
     //for the values of year,month,day compare the subject and comparison values in that order.
     //if subject is later than comparison, return true.
     //if subject is earlier than comparison, return false.
     //if they are equal, compare the next value.
     //if all values are equal, return false.
-    for(i=0;i<3;i++){
-      if(subject[i]>comparison[i])return true
-      if(subject[i]<comparison[i])return false 
+
+    for (let i = 0; i < 3; i++) {
+      if (subject[i] > comparison[i]) return true;
+      if (subject[i] < comparison[i]) return false;
     }
-    return false
+    return false;
   }
   //takes a string of the format "yyyy-mm-dd" and directly slices out and parses the date values
   function dateParse(date) {
     y = parseInt(date.slice(0, 4));
     m = parseInt(date.slice(5, 7));
     d = parseInt(date.slice(8));
-    return [y,m,d];
+    return [y, m, d];
   }
   let table = document.getElementById("tb");
   let n = data.length;
@@ -43,7 +44,7 @@ function displayPackages(data) {
   let tableHeaderID = '<th id="thid">';
   let tableDocumentID = '<td id="tdid">';
   //for each package, add the data of that package to the table
-  for (i = 0; i < n; i++) {
+  for (let i = 0; i < n; i++) {
     packageName = data[i].PkgName;
     startDate = data[i].PkgStartDate;
     dateLen = 10;
@@ -56,16 +57,17 @@ function displayPackages(data) {
     basePrice = data[i].PkgBasePrice;
     agencyCommission = data[i].PkgAgencyCommission;
     //if the start date is later than the end date, skip the rest of the loop and go to the next iteration
-    if (isLaterThan(sdi,edi)) {
+    if (isLaterThan(sdi, edi)) {
       continue;
     }
-    curYear=date.getFullYear();
-    curMonth=date.getMonth()+1;//getMonth() returns an int from 0-11, therefore +1 must be added
-    curDay=date.getDay();
-    curDate=[curYear,curMonth,curDay];
+    curYear = date.getFullYear();
+    curMonth = date.getMonth() + 1; //getMonth() returns an int from 0-11, therefore +1 must be added
+    curDay = date.getDay();
+    curDate = [curYear, curMonth, curDay];
+    console.log(curDate, sdi);
     //if the current date is later than the start date, make the text red
-    if (isLaterThan(curDate,sdi)){
-      tableDocumentID = '<td id="tdidRed">'
+    if (isLaterThan(curDate, sdi)) {
+      tableDocumentID = '<td id="tdidRed">';
     }
     //create a cell, set the outerHTML of the cell to a table element with an ID and with information
     //insert the cell in the 0th place of its respective row (the last element added will appear first)
